@@ -1,0 +1,83 @@
+// Media Queries
+@screen-xs:                  480px;
+@screen-xs-min:              @screen-xs;
+@screen-phone:               @screen-xs-min;
+@screen-sm:                  768px;
+@screen-sm-min:              @screen-sm;
+@screen-tablet:              @screen-sm-min;
+@screen-md:                  992px;
+@screen-md-min:              @screen-md;
+@screen-desktop:             @screen-md-min;
+@screen-lg:                  1200px;
+@screen-lg-min:              @screen-lg;
+@screen-lg-desktop:          @screen-lg-min;
+@screen-xs-max:              (@screen-sm-min - 1);
+@screen-sm-max:              (@screen-md-min - 1);
+@screen-md-max:              (@screen-lg-min - 1);
+
+// Colors
+@brand-default: #e4e9ed;
+@brand-primary: #3498db;
+@brand-primary-hover: lighten(@brand-primary, 5%);
+@brand-primary-active: darken(@brand-primary, 8%);
+@brand-success: #2dbb9a;
+@brand-success-hover: lighten(@brand-success, 5%);
+@brand-success-active: darken(@brand-success, 8%);
+@brand-info: #dceefa;
+@brand-info-hover: darken(@brand-info, 5%);
+@brand-info-active: darken(@brand-info, 10%);
+@brand-warning: #e29437;
+@brand-warning-hover: darken(@brand-warning, 5%);
+@brand-warning-active: darken(@brand-warning, 10%);
+@brand-danger: #ee5e5a;
+@brand-danger-hover: #ee8176;
+@brand-danger-active: darken(@brand-danger, 5%);
+@color-default: #32526c;
+
+// Foreground colors
+@foreground-default: #32526c;
+@foreground-inverse: #fff;
+
+// Background colors
+@background-default: #e4e9ed;
+@background-inverse: #20222d;
+@background-jumbotron: #fff;
+
+// Navbar (inverse)
+@navbar-inverse-border-color: #20222d;
+@navbar-inverse-background: #20222d;
+@navbar-inverse-background-active: #2b2e3d;
+@navbar-inverse-color: #fff;
+@navbar-inverse-dropdown-border-color: #b8c4d0;
+
+// Navbar (default)
+@navbar-default-border-color: #b8c4d0;
+@navbar-default-color: @foreground-default;
+@navbar-default-background-active: @background-default;
+@navbar-default-dropdown-border-color: #b8c4d0;
+
+// Content block
+@cb-background: #fff;
+@cb-padding: 10px;
+@cb-margin-bottom: 15px;
+@cb-radius: 4px;
+@cb-heading-border-color: #e6eaed;
+
+// Sidebar block
+@sb-background: #fff;
+@sb-padding: 10px;
+@sb-margin-bottom: 15px;
+@sb-radius: 4px;
+@sb-heading-border-color: #e6eaed;
+@sb-nav-border-color: #f0f4f7;
+@sb-nav-color: #748797;
+@sb-nav-color-hover: #3498db;
+@sb-nav-background-hover: #fff;
+@sb-nav-selected-border: #3498db;
+@sb-nav-selected-background: #ebf4fa;
+@sb-nav-selected-color: #33526f;
+
+// List groups
+@list-group-border: #b8c4d0;
+@list-group-hover: #ebf4fa;
+
