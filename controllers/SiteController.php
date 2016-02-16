@@ -19,6 +19,8 @@ use yii\filters\AccessControl;
  */
 class SiteController extends Controller
 {
+    public $layout = 'common';
+
     /**
      * @inheritdoc
      */
@@ -140,7 +142,7 @@ class SiteController extends Controller
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('primary', 'Check your email for further instructions.');
 
                 return $this->goHome();
             } else {

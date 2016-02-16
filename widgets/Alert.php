@@ -39,7 +39,8 @@ class Alert extends \yii\bootstrap\Widget
         'danger'  => 'alert-danger',
         'success' => 'alert-success',
         'info'    => 'alert-info',
-        'warning' => 'alert-warning'
+        'warning' => 'alert-warning',
+        'primary' => 'alert-primary',
     ];
 
     /**

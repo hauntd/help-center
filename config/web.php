@@ -17,7 +17,6 @@ $config = [
     'components' => [
         'assetManager' => [
             'appendTimestamp' => true,
-            'bundles' => require(__DIR__ . '/bundles.php'),
         ],
         'cache' => [
             'class' => yii\caching\FileCache::class,
