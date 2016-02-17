@@ -23,39 +23,11 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->params['siteName'],
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = ['label' => 'Logout', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']];
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
-
+    <?= $this->render('@app/views/partials/header.php') ?>
     <?= $content ?>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; <?= sprintf('%s %s', Html::encode(Yii::$app->params['siteName']), date('Y')) ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+<?= $this->render('@app/views/partials/footer.php') ?>
 
 <?php $this->endBody() ?>
 </body>

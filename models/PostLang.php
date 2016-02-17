@@ -5,7 +5,8 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "postLang".
+ * @author Alexander Kononenko <contact@hauntd.me>
+ * @package app\models
  *
  * @property integer $id
  * @property integer $postId
@@ -16,7 +17,7 @@ use Yii;
  * @property integer $isVisible
  * @property integer $order
  * @property string $createdAt
- * @property string $updatedAtt
+ * @property string $updatedAt
  */
 class PostLang extends \yii\db\ActiveRecord
 {

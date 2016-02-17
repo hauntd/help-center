@@ -3,10 +3,14 @@
 return [
     'adminEmail' => 'contact@hauntd.me',
     'supportEmail' => 'noreply@hauntd.me',
-    'siteName' => 'Help Center',
     'siteLanguages' => [
         'en' => 'English',
         'ru' => 'Русский',
     ],
+
+    'registrationEnabled' => true,
+    'restoreEnabled' => true,
+    'requireCaptcha' => false,
+
     'passwordResetTokenExpire' => 3600,
 ];

@@ -315,6 +315,40 @@ strong {
     border-color: @navbar-default-dropdown-border-color;
   }
 }
+.navbar-default, .navbar-inverse {
+  .navbar-form {
+    input[type="text"] {
+      font-size: 11pt;
+      border-color: transparent;
+      background: @background-default;
+      .box-shadow(none);
+      &:active, &:focus {
+        border-color: @navbar-default-border-color;
+        & + .input-group-btn .btn {
+          border-color: @navbar-default-border-color;
+          background: @navbar-default-border-color;
+        }
+      }
+    }
+    .input-group-btn {
+      .btn {
+        border-color: transparent;
+        background: @background-default;
+        .transition(all, 0.2s, linear);
+      }
+    }
+  }
+}
+@media (max-width: @screen-sm) {
+  .navbar-default, .navbar-inverse {
+    .navbar-form {
+      padding: 10px;
+      margin: 0;
+      border: 0;
+      .box-shadow(none);
+    }
+  }
+}
 
 // Panels
 .panel {

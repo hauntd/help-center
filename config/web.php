@@ -12,8 +12,10 @@ $db = array_merge(
 
 $config = [
     'id' => 'hc-web',
+    'name' => 'Help Center',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => 'post/index',
     'components' => [
         'assetManager' => [
             'appendTimestamp' => true,
