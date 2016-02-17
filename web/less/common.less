@@ -247,6 +247,10 @@ strong {
   .dropdown-menu {
     .box-shadow(none);
   }
+  .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }
 
 // Navbar (inverse)
@@ -326,7 +330,6 @@ strong {
         border-color: @navbar-default-border-color;
         & + .input-group-btn .btn {
           border-color: @navbar-default-border-color;
-          background: @navbar-default-border-color;
         }
       }
     }
@@ -335,6 +338,9 @@ strong {
         border-color: transparent;
         background: @background-default;
         .transition(all, 0.2s, linear);
+        &:hover {
+          background: @navbar-default-border-color;
+        }
       }
     }
   }
