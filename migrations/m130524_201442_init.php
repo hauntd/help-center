@@ -31,8 +31,8 @@ class m130524_201442_init extends Migration
             'categoryId' => $this->integer(),
             'title' => $this->string(255)->notNull(),
             'isVisible' => $this->boolean()->defaultValue(1),
-            'createdAt' => $this->dateTime(),
-            'updatedAt' => $this->dateTime(),
+            'createdAt' => $this->integer()->notNull(),
+            'updatedAt' => $this->integer()->notNull(),
         ], $this->tableOptions);
         $this->addForeignKey('categoryLangFk', 'categoryLang', 'categoryId', 'category', 'id', 'cascade');
 
@@ -51,8 +51,8 @@ class m130524_201442_init extends Migration
             'content' => $this->text()->notNull(),
             'isVisible' => $this->boolean()->defaultValue(1),
             'order' => $this->integer()->defaultValue(0),
-            'createdAt' => $this->dateTime(),
-            'updatedA' => $this->dateTime(),
+            'createdAt' => $this->integer()->notNull(),
+            'updatedAt' => $this->integer()->notNull(),
         ], $this->tableOptions);
         $this->addForeignKey('postLangFk', 'postLang', 'postId', 'post', 'id', 'cascade');
 
