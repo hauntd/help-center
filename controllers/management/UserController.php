@@ -61,7 +61,7 @@ class UserController extends ManagementController
 
     /**
      * Creates a new User model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * If creation is successful, the browser will be redirected to the 'update' page.
      * @return mixed
      */
     public function actionCreate()
@@ -79,7 +79,7 @@ class UserController extends ManagementController
 
     /**
      * Updates an existing User model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * If update is successful, the browser will be refreshed.
      * @param integer $id
      * @return mixed
      */
@@ -88,7 +88,8 @@ class UserController extends ManagementController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['update', 'id' => $model->id]);
+            Yii::$app->session->setFlash('primary', Yii::t('app', 'User has been updated.'));
+            return $this->refresh();
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -109,6 +110,7 @@ class UserController extends ManagementController
             throw new Exception('You can not delete active user');
         }
         $this->findModel($id)->delete();
+        Yii::$app->session->setFlash('danger', Yii::t('app', 'User has been deleted.'));
 
         return $this->redirect(['index']);
     }

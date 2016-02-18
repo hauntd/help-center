@@ -211,9 +211,37 @@ strong {
 // Forms
 .form-control {
   border-color: #b8c4d0;
+  position: relative;
   &:active, &:focus {
     border-color: #748797;
     .box-shadow(none);
+  }
+}
+.has-success {
+  .control-label {
+    color: @color-default;
+  }
+  .form-control {
+    border-color: #b8c4d0;
+    &:focus {
+      border-color: #748797;
+      .box-shadow(none);
+    }
+  }
+}
+.has-error {
+  .control-label {
+    color: @brand-danger;
+  }
+  .form-control {
+    border-color: @brand-danger;
+    &:focus {
+      border-color: @brand-danger;
+      .box-shadow(none);
+    }
+  }
+  .help-block {
+    color: @brand-danger;
   }
 }
 
