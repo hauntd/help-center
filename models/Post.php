@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use creocoder\taggable\TaggableBehavior;
+use omgdef\multilingual\MultilingualBehavior;
 
 /**
  * @author Alexander Kononenko <contact@hauntd.me>
@@ -13,6 +15,7 @@ use Yii;
  * @property integer $isVisible
  *
  * @property Category $category
+ * @property string $tagValues
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -22,6 +25,40 @@ class Post extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'post';
+    }
+
+    /**
+     * @return PostQuery
+     */
+    public static function find()
+    {
+        return new PostQuery(get_called_class());
+    }
+
+    /**
+     * @return array
+     */
+    public function behaviours()
+    {
+        return [
+            'taggable' => [
+                'class' => TaggableBehavior::class,
+                'tagValueAttribute' => 'tag',
+            ],
+            'ml' => [
+                'class' => MultilingualBehavior::class,
+                'languages' => Yii::$app->params['siteLanguages'],
+                'languageField' => 'language',
+                'requireTranslations' => false,
+                'langClassName' => PostLang::class,
+                'defaultLanguage' => Yii::$app->params['siteLanguagesDefault'],
+                'langForeignKey' => 'postId',
+                'tableName' => "{{%postLang}}",
+                'attributes' => [
+                    'title', 'content',
+                ]
+            ],
+        ];
     }
 
     /**
@@ -53,5 +90,14 @@ class Post extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::class, ['id' => 'categoryId']);
+    }
+
+    /**
+     * @return $this
+     */
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['id' => 'tagId'])
+            ->viaTable('{{%postTag}}', ['postId' => 'id']);
     }
 }
