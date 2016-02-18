@@ -34,6 +34,9 @@ if (Yii::$app->user->isGuest) {
     $rightMenu['items'][] = ['label' => 'Sign up', 'url' => ['/site/signup']];
     $rightMenu['items'][] = ['label' => 'Log in', 'url' => ['/site/login']];
 } else {
+    if (Yii::$app->user->can(\app\models\User::ROLE_EDITOR)) {
+        $rightMenu['items'][] = ['label' => 'Management', 'url' => ['/management/dashboard']];
+    }
     $rightMenu['items'][] = ['label' => 'Logout', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']];
 }
 echo Nav::widget($rightMenu);

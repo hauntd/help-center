@@ -2,6 +2,8 @@
 @import "variables.less";
 @import "common.less";
 
+@import "management.less";
+
 html,
 body {
   height: 100%;
@@ -22,10 +24,9 @@ body {
   height: auto;
   margin: 0 auto -60px;
   padding: 0 0 70px;
-}
-
-.wrap > .container {
-  padding: 70px 15px 20px;
+  & > .container {
+    padding: 70px 15px 20px;
+  }
 }
 
 .footer {
