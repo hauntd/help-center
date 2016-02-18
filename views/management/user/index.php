@@ -29,13 +29,21 @@ $this->title = Yii::t('app', 'Users');
                     [
                         'attribute' => 'id',
                         'filterOptions' => ['width' => 75],
-
+                        'contentOptions' => ['data-title' => $searchModel->getAttributeLabel('id')],
                     ],
-                    'username',
-                    'email:email',
+                    [
+                        'attribute' => 'username',
+                        'contentOptions' => ['data-title' => $searchModel->getAttributeLabel('username')],
+                    ],
+                    [
+                        'attribute' => 'email',
+                        'format' => 'email',
+                        'contentOptions' => ['data-title' => $searchModel->getAttributeLabel('email')],
+                    ],
                     [
                         'attribute' => 'status',
                         'format' => 'raw',
+                        'contentOptions' => ['data-title' => $searchModel->getAttributeLabel('status')],
                         'filter' => Html::activeDropDownList($searchModel, 'status',
                             ManagementHelper::getUserStatuses(),
                             ['class' => 'form-control', 'prompt' => '']),
@@ -46,6 +54,7 @@ $this->title = Yii::t('app', 'Users');
                     [
                         'attribute' => 'role',
                         'format' => 'raw',
+                        'contentOptions' => ['data-title' => $searchModel->getAttributeLabel('role')],
                         'filter' => Html::activeDropDownList($searchModel, 'role',
                             ManagementHelper::getUserRoles(),
                             ['class' => 'form-control', 'prompt' => '']),
@@ -57,6 +66,7 @@ $this->title = Yii::t('app', 'Users');
                         'class' => 'yii\grid\ActionColumn',
                         'filterOptions' => ['width' => 60],
                         'template' => '{update} {delete}',
+                        'contentOptions' => ['data-title' => Yii::t('app', 'Actions')],
                     ],
                 ],
             ]); ?>
