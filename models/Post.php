@@ -13,6 +13,13 @@ use omgdef\multilingual\MultilingualBehavior;
  * @property integer $id
  * @property integer $categoryId
  * @property integer $isVisible
+ * @property string $alias
+ * @property string $language
+ * @property string $title
+ * @property string $content
+ * @property integer $order
+ * @property string $createdAt
+ * @property string $updatedAt
  *
  * @property Category $category
  * @property string $tagValues
@@ -45,19 +52,6 @@ class Post extends \yii\db\ActiveRecord
                 'class' => TaggableBehavior::class,
                 'tagValueAttribute' => 'tag',
             ],
-            'ml' => [
-                'class' => MultilingualBehavior::class,
-                'languages' => Yii::$app->params['siteLanguages'],
-                'languageField' => 'language',
-                'requireTranslations' => false,
-                'langClassName' => PostLang::class,
-                'defaultLanguage' => Yii::$app->params['siteLanguagesDefault'],
-                'langForeignKey' => 'postId',
-                'tableName' => "{{%postLang}}",
-                'attributes' => [
-                    'title', 'content',
-                ]
-            ],
         ];
     }
 
@@ -67,8 +61,12 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['categoryId'], 'required'],
-            [['categoryId', 'isVisible'], 'integer'],
+            [['categoryId', 'alias', 'title', 'content'], 'required'],
+            [['categoryId', 'isVisible', 'order'], 'integer'],
+            [['content'], 'string'],
+            [['createdAt', 'updatedAt'], 'safe'],
+            [['alias', 'title'], 'string', 'max' => 255],
+            [['alias'], 'unique'],
         ];
     }
 
@@ -81,6 +79,12 @@ class Post extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'categoryId' => Yii::t('app', 'Category'),
             'isVisible' => Yii::t('app', 'Visible'),
+            'alias' => Yii::t('app', 'Alias'),
+            'title' => Yii::t('app', 'Title'),
+            'content' => Yii::t('app', 'Content'),
+            'order' => Yii::t('app', 'Order'),
+            'createdAt' => Yii::t('app', 'Created'),
+            'updatedAt' => Yii::t('app', 'Updated'),
         ];
     }
 

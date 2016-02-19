@@ -90,11 +90,11 @@ class UserController extends ManagementController
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('primary', Yii::t('app', 'User has been updated.'));
             return $this->refresh();
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
         }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**

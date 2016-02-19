@@ -50,9 +50,9 @@ class ManagementHelper
             return Html::tag('span', $statuses[$user->status][1], [
                 'class' => 'label label-' . $statuses[$user->status][0],
             ]);
-        } else {
-            return 'N/A';
         }
+
+        return 'N/A';
     }
 
     /**
@@ -71,8 +71,8 @@ class ManagementHelper
             return Html::tag('span', $roles[$user->role][1], [
                 'class' => 'label label-' . $roles[$user->role][0],
             ]);
-        } else {
-            return 'N/A';
         }
+
+        return 'N/A';
     }
 }

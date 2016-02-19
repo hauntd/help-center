@@ -16,7 +16,6 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "creocoder/yii2-taggable": "^2.0",
-        "omgdef/yii2-multilingual-behavior": "^2.1",
         "rmrevin/yii2-fontawesome": "2.12.*"
     },
     "require-dev": {
