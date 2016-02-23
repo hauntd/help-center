@@ -66,4 +66,38 @@ class Category extends \yii\db\ActiveRecord
             'updatedAt' => Yii::t('app', 'Updated'),
         ];
     }
+
+    /**
+     * @return array|null
+     */
+    public function getCategoriesTree()
+    {
+        $categories = $this->find()->all();
+        return $this->buildTree($categories);
+    }
+
+    /**
+     * Build categories tree
+     * @param $categories
+     * @param null $parentId
+     * @param int $level
+     * @return array|null
+     */
+    private function buildTree($categories, $parentId = null, $level = 0)
+    {
+        $items = [];
+
+        foreach ($categories as $category) {
+            if ($category->parentId == $parentId) {
+                $category->level = $level;
+                $items[] = $category;
+                $tree = $this->buildTree($categories, $category->id, ++$level);
+                if (count($tree)) {
+                    $items[] = $tree;
+                }
+            }
+        }
+
+        return count($items) ? $items : null;
+    }
 }

@@ -4,6 +4,7 @@ use yii\widgets\Menu;
 use app\widgets\Alert;
 use app\controllers\management\DashboardController;
 use app\controllers\management\UserController;
+use app\controllers\management\CategoryController;
 use app\models\User;
 use rmrevin\yii\fontawesome\FA;
 
@@ -27,7 +28,6 @@ use rmrevin\yii\fontawesome\FA;
                                 'label' => FA::icon('dashboard', ['tag' => 'i']) . Yii::t('app', 'Dashboard'),
                                 'url' => ['/management/dashboard/index'],
                                 'encode' => false,
-                                //'visible' => Yii::$app->user->can('moderator'),
                                 'active' => get_class($this->context) == DashboardController::class,
                             ],
                             [
@@ -36,6 +36,13 @@ use rmrevin\yii\fontawesome\FA;
                                 'encode' => false,
                                 'visible' => Yii::$app->user->can(User::ROLE_ADMINISTRATOR),
                                 'active' => get_class($this->context) == UserController::class,
+                            ],
+                            [
+                                'label' => FA::icon('list', ['tag' => 'i']) . Yii::t('app', 'Categories'),
+                                'url' => ['/management/category/index'],
+                                'encode' => false,
+                                'visible' => Yii::$app->user->can(User::ROLE_EDITOR),
+                                'active' => get_class($this->context) == CategoryController::class,
                             ],
                         ],
                     ]) ?>

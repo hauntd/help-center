@@ -18,7 +18,7 @@ module.exports = function (grunt) {
             },
             all: {
                 files: {
-                    'web/js/app.min.js': 'web/js/app.js'
+                    'web/js/app.min.js': ['web/js/app.js', 'web/js/management.js'],
                 }
             }
         },

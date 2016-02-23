@@ -14,5 +14,7 @@ return [
 
     # management
     'management' => 'management/dashboard',
+    'management/dashboard' => 'management/dashboard/index',
     'management/users' => 'management/user/index',
+    'management/categories' => 'management/category/index',
 ];
