@@ -26,5 +26,6 @@ class AppAsset extends AssetBundle
         BootstrapAsset::class,
         BootstrapPluginAsset::class,
         jqTreeAsset::class,
+        BootboxAsset::class,
     ];
 }

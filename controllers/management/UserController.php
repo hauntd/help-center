@@ -17,6 +17,9 @@ use yii\filters\VerbFilter;
  */
 class UserController extends ManagementController
 {
+    /** @var User */
+    protected $model = User::class;
+
     /**
      * @inheritdoc
      */
@@ -85,7 +88,7 @@ class UserController extends ManagementController
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel(['id' => $id]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('primary', Yii::t('app', 'User has been updated.'));
@@ -109,25 +112,9 @@ class UserController extends ManagementController
         if (Yii::$app->user->id == $id) {
             throw new Exception('You can not delete active user');
         }
-        $this->findModel($id)->delete();
+        $this->findModel(['id' => $id])->delete();
         Yii::$app->session->setFlash('danger', Yii::t('app', 'User has been deleted.'));
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the User model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return User the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = User::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

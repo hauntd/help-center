@@ -89,12 +89,17 @@ class Category extends \yii\db\ActiveRecord
 
         foreach ($categories as $category) {
             if ($category->parentId == $parentId) {
-                $category->level = $level;
-                $items[] = $category;
-                $tree = $this->buildTree($categories, $category->id, ++$level);
-                if (count($tree)) {
-                    $items[] = $tree;
+                $item = [
+                    'id' => $category->id,
+                    'label' => $category->title,
+                    'alias' => $category->alias,
+                    'parentId' => $category->parentId,
+                ];
+                $children = $this->buildTree($categories, $category->id, ++$level);
+                if (count($children)) {
+                    $item['children'] = $children;
                 }
+                $items[] = $item;
             }
         }
 
