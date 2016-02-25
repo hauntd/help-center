@@ -11,8 +11,9 @@ use Yii;
  *
  * @property integer $id
  * @property integer $parentId
- * @property string $alias
+ * @property integer $order
  * @property integer $isVisible
+ * @property string $alias
  * @property string $title
  * @property string $createdAt
  * @property string $updatedAt

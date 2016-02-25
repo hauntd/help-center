@@ -12,12 +12,11 @@ use omgdef\multilingual\MultilingualBehavior;
  *
  * @property integer $id
  * @property integer $categoryId
+ * @property integer $order
  * @property integer $isVisible
  * @property string $alias
- * @property string $language
  * @property string $title
  * @property string $content
- * @property integer $order
  * @property string $createdAt
  * @property string $updatedAt
  *
