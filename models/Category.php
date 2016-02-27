@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\behaviors\TimestampBehavior;
+use paulzi\sortable\SortableBehavior;
 use Yii;
 
 /**
@@ -11,7 +12,7 @@ use Yii;
  *
  * @property integer $id
  * @property integer $parentId
- * @property integer $order
+ * @property integer $sort
  * @property integer $isVisible
  * @property string $alias
  * @property string $title
@@ -29,12 +30,24 @@ class Category extends \yii\db\ActiveRecord
     }
 
     /**
+     * Init
+     */
+    public function init()
+    {
+        $this->isVisible = 1;
+    }
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
     {
         return [
             TimestampBehavior::class,
+            'sortable' => [
+                'class' => SortableBehavior::class,
+                'query' => ['parentId'],
+            ]
         ];
     }
 
@@ -44,7 +57,8 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['parentId', 'isVisible'], 'integer'],
+            [['title', 'alias', 'isVisible'], 'required'],
+            [['parentId', 'isVisible', 'sort'], 'integer'],
             [['createdAt', 'updatedAt'], 'safe'],
             [['alias'], 'required'],
             [['alias'], 'string', 'max' => 32],
@@ -73,7 +87,7 @@ class Category extends \yii\db\ActiveRecord
      */
     public function getCategoriesTree()
     {
-        $categories = $this->find()->all();
+        $categories = Category::find()->orderBy('sort')->all();
         return $this->buildTree($categories);
     }
 
@@ -95,6 +109,8 @@ class Category extends \yii\db\ActiveRecord
                     'label' => $category->title,
                     'alias' => $category->alias,
                     'parentId' => $category->parentId,
+                    'sort' => $category->sort,
+                    'isVisible' => $category->isVisible,
                 ];
                 $children = $this->buildTree($categories, $category->id, ++$level);
                 if (count($children)) {

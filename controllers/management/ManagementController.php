@@ -2,9 +2,11 @@
 
 namespace app\controllers\management;
 
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\db\ActiveRecord;
+use yii\web\Response;
 
 /**
  * @author Alexander Kononenko <contact@hauntd.me>
@@ -31,5 +33,26 @@ class ManagementController extends Controller
         }
 
         return $model;
+    }
+
+    /**
+     * @param $model
+     * @return array
+     */
+    protected function toggleVisibility($model)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $model->isVisible = $model->isVisible ? 0 : 1;
+        if ($model->save()) {
+            return [
+                'success' => true,
+                'message' => Yii::t('app', 'Item visibility updated'),
+                'isVisible' => $model->isVisible,
+            ];
+        }
+        return [
+            'success' => false,
+            'errors' => $model->errors,
+        ];
     }
 }

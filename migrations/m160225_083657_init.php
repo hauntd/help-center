@@ -22,18 +22,19 @@ class m160225_083657_init extends Migration
         $this->createTable('{{%category}}', [
             'id' => $this->primaryKey(),
             'parentId' => $this->integer(),
-            'order' => $this->integer()->defaultValue(0),
+            'sort' => $this->integer()->defaultValue(0),
             'isVisible' => $this->boolean()->defaultValue(1),
             'alias' => $this->string(32)->notNull()->unique(),
             'title' => $this->string(255)->notNull(),
             'createdAt' => $this->integer()->notNull(),
             'updatedAt' => $this->integer()->notNull(),
         ], $this->tableOptions);
+        $this->createIndex('categoryParentSort', '{{%category}}', ['parentId', 'sort']);
 
         $this->createTable('{{%post}}', [
             'id' => $this->primaryKey(),
             'categoryId' => $this->integer()->notNull(),
-            'order' => $this->integer()->defaultValue(0),
+            'sort' => $this->integer()->defaultValue(0),
             'isVisible' => $this->boolean()->defaultValue(1),
             'alias' => $this->string(255)->notNull(),
             'title' => $this->string(255)->notNull(),

@@ -97,7 +97,18 @@ ul.jqtree-tree {
     margin-top: 4px;
     font-size: 13pt;
   }
-  .jqtree-delete, .jqtree-edit {
+  .jqtree-is-visible {
+    width: 7px;
+    height: 7px;
+    margin-right: 7px;
+    display: inline-block;
+    background: @cb-heading-border-color;
+    .rounded(7px);
+    &.yes {
+      background: @brand-primary;
+    }
+  }
+  .jqtree-delete, .jqtree-update, .jqtree-visible {
     margin-right: 3px;
     margin-top: 2px;
     text-align: center;
@@ -119,9 +130,27 @@ ul.jqtree-tree {
       color: @brand-danger;
     }
   }
-  .jqtree-edit {
+  .jqtree-update {
     i:hover {
       color: @brand-primary;
+    }
+  }
+  .jqtree-visible {
+    &.toggle-on {
+      i {
+        color: @brand-primary;
+      }
+      &:hover i {
+        color: @brand-primary-hover;
+      }
+    }
+    &.toggle-off {
+      i {
+        color: darken(@cb-heading-border-color, 7%);
+      }
+      &:hover i {
+        color: lighten(@brand-primary, 17%);
+      }
     }
   }
   ul.jqtree_common {
@@ -158,10 +187,10 @@ ul.jqtree-tree {
       background-position: 0 0;
     }
     &.jqtree-toggler-left {
-      margin-right: 0.5em;
+      margin-right: 9px;
     }
     &.jqtree-toggler-right {
-      margin-left: 0.5em;
+      margin-left: 9px;
     }
   }
   .jqtree-element {
@@ -184,9 +213,9 @@ ul.jqtree-tree {
   .jqtree-title {
     color: @color-default;
     vertical-align: middle;
-    margin-left: 1.5em;
+    margin-left: 5px;
     &.jqtree-title-folder {
-      margin-left: 0;
+      margin-left: 4px;
     }
   }
   li.jqtree-folder {
@@ -253,6 +282,9 @@ ul.jqtree-tree {
     > .jqtree-element .jqtree-move {
       color: @brand-primary;
     }
+  }
+  li.jqtree-empty > .jqtree-element:hover {
+    border-color: @cb-heading-border-color;
   }
   .jqtree-moving > .jqtree-element .jqtree-title {
     outline: dashed 1px @brand-primary;
