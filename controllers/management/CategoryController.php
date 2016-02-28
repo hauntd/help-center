@@ -69,7 +69,7 @@ class CategoryController extends ManagementController
     {
         $category = new Category();
         if ($category->load(Yii::$app->request->post()) && $category->save()) {
-            return $this->redirect(['index', 'id' => $category->id]);
+            return $this->redirect(['index']);
         }
         if (Yii::$app->request->isAjax) {
             return $this->renderAjax('create', [

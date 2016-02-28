@@ -15,19 +15,21 @@ $this->title = Yii::t('app', 'Update category');
                 <?= Html::a('&larr; ' . Yii::t('app', 'Back to categories'), ['index'], [
                     'class' => 'btn btn-xs btn-ghost btn-default btn-modal-close'
                 ]) ?>
-                <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $category->id], [
-                    'class' => 'btn btn-xs btn-ghost btn-danger btn-category-delete',
-                    'data' => [
-                        'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                        'method' => 'post',
-                    ]
-                ]) ?>
             </div>
         </div>
         <div class="content-block-body">
             <?= $this->render('_form', [
                 'category' => $category,
                 'formId' => 'category-update-form',
+                'buttons' => [
+                    Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $category->id], [
+                        'class' => 'btn btn-danger btn-category-delete',
+                        'data' => [
+                            'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                            'method' => 'post',
+                        ]
+                    ]),
+                ],
             ]) ?>
         </div>
     </div>

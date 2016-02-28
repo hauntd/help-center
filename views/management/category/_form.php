@@ -7,6 +7,10 @@ use yii\widgets\ActiveForm;
 /* @var $category app\models\Category */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $formId string */
+/* @var $buttons array */
+
+$buttons = $buttons ?? [];
+
 ?>
 
 <div class="category-form">
@@ -21,6 +25,11 @@ use yii\widgets\ActiveForm;
     <div class="form-group form-actions">
         <?= Html::submitButton($category->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'),
             ['class' => 'btn btn-primary']) ?>
+        <?php if (count($buttons)) {
+            foreach ($buttons as $button) {
+                echo $button;
+            }
+        } ?>
     </div>
 
     <?php ActiveForm::end(); ?>
