@@ -2,13 +2,13 @@
 
 namespace app\controllers;
 
-use yii\web\Controller;
+use app\components\WebController;
 
 /**
  * @author Alexander Kononenko <contact@hauntd.me>
  * @package app\controllers
  */
-class PostController extends Controller
+class PostController extends WebController
 {
     /** @var string */
     public $layout = 'common';

@@ -1,6 +1,7 @@
 <?php
 
 use app\assets\AppAsset;
+use app\assets\jqTreeAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -10,6 +11,7 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Categories');
 $this->registerJsFile('@web/js/management-categories.js', ['depends' => AppAsset::class]);
+jqTreeAsset::register($this);
 ?>
 <div class="row">
     <div class="content-block content-block-categories">

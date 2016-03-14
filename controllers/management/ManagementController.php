@@ -2,8 +2,8 @@
 
 namespace app\controllers\management;
 
+use app\components\WebController;
 use Yii;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\db\ActiveRecord;
 use yii\web\Response;
@@ -12,7 +12,7 @@ use yii\web\Response;
  * @author Alexander Kononenko <contact@hauntd.me>
  * @package app\controllers\management
  */
-class ManagementController extends Controller
+class ManagementController extends WebController
 {
     /** @var ActiveRecord */
     protected $model;

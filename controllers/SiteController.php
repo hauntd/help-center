@@ -3,13 +3,13 @@
 namespace app\controllers;
 
 use Yii;
+use app\components\WebController;
 use app\forms\LoginForm;
 use app\forms\PasswordResetRequestForm;
 use app\forms\ResetPasswordForm;
 use app\forms\SignupForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
@@ -17,7 +17,7 @@ use yii\filters\AccessControl;
  * @author Alexander Kononenko <contact@hauntd.me>
  * @package app\controllers
  */
-class SiteController extends Controller
+class SiteController extends WebController
 {
     public $layout = 'common';
 
@@ -59,7 +59,7 @@ class SiteController extends Controller
     {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
+                'class' => 'app\actions\ErrorAction',
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',

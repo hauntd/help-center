@@ -25,7 +25,7 @@ class AppAsset extends AssetBundle
         YiiAsset::class,
         BootstrapAsset::class,
         BootstrapPluginAsset::class,
-        jqTreeAsset::class,
         BootboxAsset::class,
+        MessengerAsset::class,
     ];
 }

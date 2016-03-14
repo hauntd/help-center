@@ -69,6 +69,13 @@ class CategoryController extends ManagementController
     {
         $category = new Category();
         if ($category->load(Yii::$app->request->post()) && $category->save()) {
+            if (Yii::$app->request->isAjax) {
+                $this->sendJson([
+                    'success' => true,
+                    'message' => Yii::t('app', 'Category added'),
+                    'category' => $category,
+                ]);
+            }
             return $this->redirect(['index']);
         }
         if (Yii::$app->request->isAjax) {
@@ -90,7 +97,14 @@ class CategoryController extends ManagementController
     {
         $category = $this->findModel(['id' => $id]);
         if ($category->load(Yii::$app->request->post()) && $category->save()) {
-            return $this->redirect('index');
+            if (Yii::$app->request->isAjax) {
+                $this->sendJson([
+                    'success' => true,
+                    'message' => Yii::t('app', 'Category updated'),
+                    'category' => $category,
+                ]);
+            }
+            return $this->redirect(['index']);
         }
 
         if (Yii::$app->request->isAjax) {
@@ -179,6 +193,7 @@ class CategoryController extends ManagementController
         $category = $this->findModel(['id' => $id]);
         Yii::$app->response->format = Response::FORMAT_JSON;
         if ($category->delete()) {
+            Category::updateAll(['parentId' => $category->parentId], ['parentId' => $category->id]);
             return [
                 'success' => true,
                 'message' => Yii::t('app', 'Category removed'),
