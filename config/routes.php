@@ -17,4 +17,5 @@ return [
     'management/dashboard' => 'management/dashboard/index',
     'management/users' => 'management/user/index',
     'management/categories' => 'management/category/index',
+    'management/posts' => 'management/post/index',
 ];

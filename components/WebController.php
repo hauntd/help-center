@@ -3,6 +3,7 @@
 namespace app\components;
 
 use Yii;
+use yii\web\Response;
 use yii\web\Controller;
 
 /**

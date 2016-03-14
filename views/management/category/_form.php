@@ -25,11 +25,9 @@ $buttons = $buttons ?? [];
     <div class="form-group form-actions">
         <?= Html::submitButton($category->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'),
             ['class' => 'btn btn-primary']) ?>
-        <?php if (count($buttons)) {
-            foreach ($buttons as $button) {
-                echo $button;
-            }
-        } ?>
+        <?php if (count($buttons)): ?>
+            <?php foreach ($buttons as $button) echo $button; ?>
+        <?php endif; ?>
     </div>
 
     <?php ActiveForm::end(); ?>

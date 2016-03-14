@@ -3,25 +3,27 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $category app\models\Category */
+/* @var $post app\models\Post */
+/* @var $categories app\models\Category[] */
 
-$this->title = Yii::t('app', 'New Category');
+$this->title = Yii::t('app', 'New Post');
 ?>
 <div class="row">
     <div class="content-block">
         <div class="content-block-header">
             <h1><?= Html::encode($this->title) ?></h1>
             <div class="pull-right">
-                <?= Html::a('&larr; ' . Yii::t('app', 'Back to categories'), ['index'], [
+                <?= Html::a('&larr; ' . Yii::t('app', 'Back to Posts'), ['index'], [
                     'class' => 'btn btn-xs btn-ghost btn-default btn-modal-close',
-                    'data-id' => $category->id,
+                    'data-id' => $post->id,
                 ]) ?>
             </div>
         </div>
         <div class="content-block-body">
             <?= $this->render('_form', [
-                'category' => $category,
-                'formId' => 'category-create-form',
+                'post' => $post,
+                'categories' => $categories,
+                'formId' => 'post-create-form',
             ]) ?>
         </div>
     </div>

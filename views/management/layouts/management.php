@@ -4,6 +4,7 @@ use yii\widgets\Menu;
 use app\widgets\Alert;
 use app\controllers\management\DashboardController;
 use app\controllers\management\UserController;
+use app\controllers\management\PostController;
 use app\controllers\management\CategoryController;
 use app\models\User;
 use rmrevin\yii\fontawesome\FA;
@@ -31,11 +32,11 @@ use rmrevin\yii\fontawesome\FA;
                                 'active' => get_class($this->context) == DashboardController::class,
                             ],
                             [
-                                'label' => FA::icon('user', ['tag' => 'i']) . Yii::t('app', 'Users'),
-                                'url' => ['/management/user/index'],
+                                'label' => FA::icon('file-text-o', ['tag' => 'i']) . Yii::t('app', 'Posts'),
+                                'url' => ['/management/post/index'],
                                 'encode' => false,
-                                'visible' => Yii::$app->user->can(User::ROLE_ADMINISTRATOR),
-                                'active' => get_class($this->context) == UserController::class,
+                                'visible' => Yii::$app->user->can(User::ROLE_EDITOR),
+                                'active' => get_class($this->context) == PostController::class,
                             ],
                             [
                                 'label' => FA::icon('list', ['tag' => 'i']) . Yii::t('app', 'Categories'),
@@ -43,6 +44,13 @@ use rmrevin\yii\fontawesome\FA;
                                 'encode' => false,
                                 'visible' => Yii::$app->user->can(User::ROLE_EDITOR),
                                 'active' => get_class($this->context) == CategoryController::class,
+                            ],
+                            [
+                                'label' => FA::icon('user', ['tag' => 'i']) . Yii::t('app', 'Users'),
+                                'url' => ['/management/user/index'],
+                                'encode' => false,
+                                'visible' => Yii::$app->user->can(User::ROLE_ADMINISTRATOR),
+                                'active' => get_class($this->context) == UserController::class,
                             ],
                         ],
                     ]) ?>
