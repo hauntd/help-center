@@ -25,7 +25,7 @@ $rightMenu = [
                 'placeholder' => Yii::t('app', 'Search'),
                 'class' => 'form-control',
             ],
-            'visible' => $this->params['navbar.search.hidden'] ?? true,
+            'visible' => $this->params['navbar.search.visible'] ?? true,
         ]),
         ['label' => 'Topics', 'url' => ['/']],
     ],
