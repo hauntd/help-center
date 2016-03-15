@@ -15,7 +15,15 @@ $config = [
     'name' => 'Help Center',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'defaultRoute' => 'post/index',
+    'defaultRoute' => 'frontend/post/index',
+    'modules' => [
+        'frontend' => [
+            'class' => app\modules\frontend\Module::class,
+        ],
+        'management' => [
+            'class' => app\modules\management\Module::class,
+        ],
+    ],
     'components' => [
         'assetManager' => [
             'appendTimestamp' => true,
