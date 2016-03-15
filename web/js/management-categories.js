@@ -91,26 +91,26 @@ var categories = {
                         position: position
                     }
                 };
-            if (position == "before") {
-                if (movedNode.parentId == null) {
+            if (position === "before") {
+                if (movedNode.parentId === null) {
                     requestData.CategorySortForm.parentId = movedNode.parentId;
-                    requestData.CategorySortForm.type	= 'onlyMove';
+                    requestData.CategorySortForm.type = 'onlyMove';
                 } else {
                     requestData.CategorySortForm.newParentId = null;
                     requestData.CategorySortForm.type = 'setParentAndMove';
                 }
             }
-            if (position == "after") {
-                if (movedNode.parentId == targetNode.parentId) {
+            if (position === "after") {
+                if (movedNode.parentId === targetNode.parentId) {
                     requestData.CategorySortForm.type = 'onlyMove';
                 } else {
                     requestData.CategorySortForm.newParentId = targetNode.parentId;
                     requestData.CategorySortForm.type = 'setParentAndMove';
                 }
             }
-            if (position == "inside") {
-                if (movedNode.parentId == targetNode.id) {
-                    requestData.CategorySortForm.parentId  = movedNode.parentId;
+            if (position === "inside") {
+                if (movedNode.parentId === targetNode.id) {
+                    requestData.CategorySortForm.parentId = movedNode.parentId;
                     requestData.CategorySortForm.type = 'onlyMove';
                 } else {
                     requestData.CategorySortForm.newParentId = targetNode.id;
@@ -131,39 +131,39 @@ var categories = {
             openedIcon: '&#xf107;',
             closedIcon: '&#xf105;',
             onCreateLi: function(node, li) {
-                if (!node.isEmpty) {
-                    var deleteButton = $('<button/>')
-                        .attr('data-node-id', node.id)
-                        .attr('type', 'button')
-                        .attr('title', app.t('app', 'Delete'))
-                        .attr('rel', 'tooltip')
-                        .addClass('jqtree-delete btn btn-xs btn-ghost')
-                        .html('<i class="fa fa-trash"></i>');
-                    var updateButton = $('<a/>')
-                        .attr('data-node-id', node.id)
-                        .attr('type', 'button')
-                        .attr('title', app.t('app', 'Update'))
-                        .attr('rel', 'tooltip')
-                        .attr('href', app.getUrl('management/category/update?id=' + node.id))
-                        .addClass('jqtree-update btn btn-xs btn-ghost btn-modal')
-                        .html('<i class="fa fa-pencil"></i>');
-                    var visibilityButton = $('<a/>')
-                        .data('node-id', node.id)
-                        .attr('type', 'button')
-                        .attr('title', app.t('app', 'Toggle visibility'))
-                        .attr('rel', 'tooltip')
-                        .attr('href', app.getUrl('management/category/toggle?id=' + node.id))
-                        .addClass('jqtree-visible btn btn-xs btn-ghost btn-toggle')
-                        .addClass(node.isVisible ? 'toggle-on' : 'toggle-off')
-                        .html('<i class="fa fa-lightbulb-o"></i>');
-                    li.find('.jqtree-title').before('<i class="jqtree-move fa fa-ellipsis-v"></i>');
-                    li.find('.jqtree-title').before(deleteButton);
-                    li.find('.jqtree-title').before(updateButton);
-                    li.find('.jqtree-title').before(visibilityButton);
-                    li.find('.jqtree-title').append('<span class="jqtree-alias"> - ' + node.alias + '</i>');
-                } else {
+                if (node.isEmpty) {
                     li.addClass('jqtree-empty');
+                    return;
                 }
+                var deleteButton = $('<button/>').attr({
+                    'data-node-id': node.id,
+                    'type': 'button',
+                    'title': app.t('app', 'Delete'),
+                    'rel': 'tooltip',
+                    'class': 'jqtree-delete btn btn-xs btn-ghost'
+                }).html('<i class="fa fa-trash"></i>');
+                var updateButton = $('<a/>').attr({
+                    'data-node-id': node.id,
+                    'type': 'button',
+                    'title': app.t('app', 'Update'),
+                    'rel': 'tooltip',
+                    'href': app.getUrl('management/category/update?id=' + node.id),
+                    'class': 'jqtree-update btn btn-xs btn-ghost btn-modal'
+                }).html('<i class="fa fa-pencil"></i>');
+                var visibilityButton = $('<a/>').attr({
+                    'data-node-id': node.id,
+                    'type': 'button',
+                    'title': app.t('app', 'Toggle visibility'),
+                    'rel': 'tooltip',
+                    'href': app.getUrl('management/category/toggle?id=' + node.id),
+                    'class': 'jqtree-visible btn btn-xs btn-ghost btn-toggle ' + node.isVisible ? 'toggle-on' : 'toggle-off'
+                }).html('<i class="fa fa-lightbulb-o"></i>');
+
+                li.find('.jqtree-title').before('<i class="jqtree-move fa fa-ellipsis-v"></i>');
+                li.find('.jqtree-title').before(deleteButton);
+                li.find('.jqtree-title').before(updateButton);
+                li.find('.jqtree-title').before(visibilityButton);
+                li.find('.jqtree-title').append('<span class="jqtree-alias"> - ' + node.alias + '</i>');
             },
             onCanSelectNode: function(node) {
                 return !node.isEmpty;

@@ -193,7 +193,7 @@ class CategoryController extends ManagementController
         $category = $this->findModel(['id' => $id]);
         Yii::$app->response->format = Response::FORMAT_JSON;
         if ($category->delete()) {
-            Category::updateAll(['parentId' => $category->parentId], ['parentId' => $category->id]);
+            $category->updateAll(['parentId' => $category->parentId], ['parentId' => $category->id]);
             return [
                 'success' => true,
                 'message' => Yii::t('app', 'Category removed'),
