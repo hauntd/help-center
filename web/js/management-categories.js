@@ -156,7 +156,7 @@ var categories = {
                     'title': app.t('app', 'Toggle visibility'),
                     'rel': 'tooltip',
                     'href': app.getUrl('management/category/toggle?id=' + node.id),
-                    'class': 'jqtree-visible btn btn-xs btn-ghost btn-toggle ' + node.isVisible ? 'toggle-on' : 'toggle-off'
+                    'class': 'jqtree-visible btn btn-xs btn-ghost btn-toggle ' + (node.isVisible ? 'toggle-on' : 'toggle-off')
                 }).html('<i class="fa fa-lightbulb-o"></i>');
 
                 li.find('.jqtree-title').before('<i class="jqtree-move fa fa-ellipsis-v"></i>');
@@ -170,6 +170,9 @@ var categories = {
             },
             onCanMove: function(node) {
                 return !node.isEmpty;
+            },
+            onCanMoveTo: function(movedNode, targetNode, position) {
+                return !(targetNode.level && position === 'inside');
             }
         };
         this.treeElement.tree(options);

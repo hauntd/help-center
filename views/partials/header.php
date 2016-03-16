@@ -21,7 +21,7 @@ $rightMenu = [
             'method' => 'get',
             'name' => 'query',
             'inputOptions' => [
-                'autocomplete' => 0,
+                'autocomplete' => 'off',
                 'placeholder' => Yii::t('app', 'Search'),
                 'class' => 'form-control',
             ],

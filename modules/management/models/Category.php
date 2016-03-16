@@ -36,9 +36,10 @@ class Category extends \app\models\Category
                     'alias' => $category->alias,
                     'parentId' => $category->parentId,
                     'sort' => $category->sort,
+                    'level' => $level,
                     'isVisible' => $category->isVisible,
                 ];
-                $children = $this->buildTree($categories, $category->id, ++$level);
+                $children = $this->buildTree($categories, $category->id, $level + 1);
                 if (count($children)) {
                     $item['children'] = $children;
                 }
