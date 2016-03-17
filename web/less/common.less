@@ -210,34 +210,42 @@ strong {
 
 // Forms
 .form-control {
-  border-color: #b8c4d0;
+  border-color: @form-control-border-color;
   position: relative;
+  .box-shadow(none);
+  .control-label {
+    .transition(all, 0.2s, linear);
+  }
   &:active, &:focus {
-    border-color: #748797;
-    .box-shadow(none);
+    border-color: @brand-primary-hover;
+    .box-shadow(0 0 0 2px lighten(@brand-primary-hover, 14%));
   }
 }
 .has-success {
   .control-label {
     color: @color-default;
+    .transition(all, 0.2s, linear);
   }
   .form-control {
-    border-color: #b8c4d0;
+    border-color: @form-control-border-color;
+    .box-shadow(none);
     &:focus {
-      border-color: #748797;
-      .box-shadow(none);
+      border-color: @brand-primary-hover;
+      .box-shadow(0 0 0 2px lighten(@brand-primary-hover, 14%));
     }
   }
 }
 .has-error {
   .control-label {
     color: @brand-danger;
+    .transition(all, 0.2s, linear);
   }
   .form-control {
     border-color: @brand-danger;
-    &:focus {
-      border-color: @brand-danger;
-      .box-shadow(none);
+    .box-shadow(none);
+    &:active, &:focus {
+      border-color: @brand-danger-hover;
+      .box-shadow(0 0 0 2px lighten(@brand-danger-hover, 14%));
     }
   }
   .help-block {

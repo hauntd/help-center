@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\widgets\CategoriesWidget;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
@@ -22,46 +23,7 @@ $this->params['navbar.class'] = 'navbar-default navbar-homepage';
             <?php ActiveForm::end(); ?>
         </div>
         <div class="homepage-categories">
-            <div class="col-sm-3 categories-block">
-                <a href="#" class="category-root">Category 1</a>
-                <ul class="categories-children">
-                    <li><a href="#">Category 1.1</a></li>
-                    <li><a href="#">Category 1.2</a></li>
-                    <li><a href="#">Category 1.3</a></li>
-                    <li><a href="#">Category 1.4</a></li>
-                    <li><a href="#">Category 1.5</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3 categories-block">
-                <a href="#" class="category-root">Category 2</a>
-                <ul class="categories-children">
-                    <li><a href="#">Category 2.1</a></li>
-                    <li><a href="#">Category 2.2</a></li>
-                    <li><a href="#">Category 2.3</a></li>
-                    <li><a href="#">Category 2.4</a></li>
-                    <li><a href="#">Category 2.5</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3 categories-block">
-                <a href="#" class="category-root">Category 3</a>
-                <ul class="categories-children">
-                    <li><a href="#">Category 3.1</a></li>
-                    <li><a href="#">Category 3.2</a></li>
-                    <li><a href="#">Category 3.3</a></li>
-                    <li><a href="#">Category 3.4</a></li>
-                    <li><a href="#">Category 3.5</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3 categories-block">
-                <a href="#" class="category-root">Category 3</a>
-                <ul class="categories-children">
-                    <li><a href="#">Category 3.1</a></li>
-                    <li><a href="#">Category 3.2</a></li>
-                    <li><a href="#">Category 3.3</a></li>
-                    <li><a href="#">Category 3.4</a></li>
-                    <li><a href="#">Category 3.5</a></li>
-                </ul>
-            </div>
+            <?= CategoriesWidget::widget([]) ?>
         </div>
     </div>
 </div>
