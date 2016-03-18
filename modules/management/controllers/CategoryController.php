@@ -7,6 +7,7 @@ use app\modules\management\models\Category;
 use app\modules\management\models\User;
 use app\components\AccessRule;
 use Yii;
+use yii\bootstrap\ActiveForm;;
 use yii\base\InvalidParamException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -68,21 +69,31 @@ class CategoryController extends ManagementController
     public function actionCreate()
     {
         $category = new Category();
-        if ($category->load(Yii::$app->request->post()) && $category->save()) {
-            if (Yii::$app->request->isAjax) {
-                $this->sendJson([
-                    'success' => true,
-                    'message' => Yii::t('app', 'Category added'),
-                    'category' => $category,
-                ]);
+        $ajax = Yii::$app->request->isAjax;
+
+        if ($category->load(Yii::$app->request->post())) {
+            if ($category->save()) {
+                if ($ajax) {
+                    $this->sendJson([
+                        'success' => true,
+                        'message' => Yii::t('app', 'Category added'),
+                        'category' => $category,
+                    ]);
+                }
+                $this->redirect(['index']);
+            } else {
+                if ($ajax) {
+                    $this->sendJson(['messages' => ActiveForm::validate($category)]);
+                }
             }
-            return $this->redirect(['index']);
         }
+
         if (Yii::$app->request->isAjax) {
             return $this->renderAjax('create', [
                 'category' => $category,
             ]);
         }
+
         return $this->render('create', [
             'category' => $category,
         ]);
@@ -96,15 +107,23 @@ class CategoryController extends ManagementController
     public function actionUpdate($id)
     {
         $category = $this->findModel(['id' => $id]);
-        if ($category->load(Yii::$app->request->post()) && $category->save()) {
-            if (Yii::$app->request->isAjax) {
-                $this->sendJson([
-                    'success' => true,
-                    'message' => Yii::t('app', 'Category updated'),
-                    'category' => $category,
-                ]);
+        $ajax = Yii::$app->request->isAjax;
+
+        if ($category->load(Yii::$app->request->post())) {
+            if ($category->save()) {
+                if ($ajax) {
+                    $this->sendJson([
+                        'success' => true,
+                        'message' => Yii::t('app', 'Category updated'),
+                        'category' => $category,
+                    ]);
+                }
+                $this->redirect(['index']);
+            } else {
+                if ($ajax) {
+                    $this->sendJson(['messages' => ActiveForm::validate($category)]);
+                }
             }
-            return $this->redirect(['index']);
         }
 
         if (Yii::$app->request->isAjax) {
@@ -112,6 +131,7 @@ class CategoryController extends ManagementController
                 'category' => $category,
             ]);
         }
+
         return $this->render('update', [
             'category' => $category,
         ]);

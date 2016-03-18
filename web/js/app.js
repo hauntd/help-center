@@ -84,7 +84,7 @@ $(document).ready(function() {
         event.preventDefault();
         return false;
     });
-    $body.on('submit', '.modal-form form', function(event) {
+    $body.on('beforeSubmit', '.modal-form form', function(event) {
         event.preventDefault();
         var $form = $(this),
             $buttons = $form.find('.btn');
@@ -100,14 +100,17 @@ $(document).ready(function() {
                 if (response.success) {
                     $('.modal.in').modal('hide');
                     Messenger().post({message: response.message, type: 'success'});
+                    $form.trigger('afterSubmit', event);
+                } else if (response.messages) {
+                    $form.yiiActiveForm('updateMessages', response.messages, true);
                 }
-                $form.trigger('afterSubmit', event);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 $buttons.attr('disabled', false);
                 Messenger().post({message: jqXHR.data, type: 'error'});
             }
         });
+
         return false;
     });
 
