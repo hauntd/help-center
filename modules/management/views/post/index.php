@@ -15,7 +15,7 @@ $this->title = Yii::t('app', 'Posts');
         <div class="content-block-header">
             <h1><?= Html::encode($this->title) ?></h1>
             <div class="pull-right">
-                <?= Html::a(Yii::t('app', 'New Post'), ['create'], ['class' => 'btn btn-xs btn-ghost btn-primary']) ?>
+                <?= Html::a(Yii::t('app', 'New post'), ['create'], ['class' => 'btn btn-xs btn-ghost btn-primary']) ?>
             </div>
         </div>
         <div class="content-block-body">

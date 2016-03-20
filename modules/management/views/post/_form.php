@@ -1,5 +1,6 @@
 <?php
 
+use ijackua\lepture\Markdowneditor;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
@@ -16,15 +17,18 @@ $buttons = $buttons ?? [];
 ?>
 
 <div class="post-form">
-
     <?php $form = ActiveForm::begin(['options' => ['id' => $formId]]); ?>
-
-    <?= $form->field($post, 'isVisible')->checkbox() ?>
-    <?= $form->field($post, 'categoryId')->dropDownList(ArrayHelper::map($categories, 'id', 'title')) ?>
-    <?= $form->field($post, 'alias')->textInput(['maxlength' => true]) ?>
     <?= $form->field($post, 'title')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($post, 'content')->textarea(['rows' => 6]) ?>
-
+    <?= $form->field($post, 'alias')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($post, 'categoryId')->dropDownList(ArrayHelper::map($categories, 'id', 'title')) ?>
+    <?= $form->field($post, 'isVisible')->checkbox() ?>
+    <?= Markdowneditor::widget([
+        'model' => $post,
+        'attribute' => 'content',
+        'markedOptions' => [
+            'tables' => false
+        ]
+    ]) ?>
     <div class="form-group">
         <?= Html::submitButton($post->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'),
             ['class' => 'btn btn-primary']) ?>
@@ -32,7 +36,5 @@ $buttons = $buttons ?? [];
             <?php foreach ($buttons as $button) echo $button; ?>
         <?php endif; ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>

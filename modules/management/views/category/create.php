@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $category app\modules\management\models\Category */
 
-$this->title = Yii::t('app', 'New Category');
+$this->title = Yii::t('app', 'New category');
 ?>
 <div class="row">
     <div class="content-block">

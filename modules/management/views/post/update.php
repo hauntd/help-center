@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $post app\modules\management\models\Post */
 /* @var $categories app\modules\management\models\Category[] */
 
-$this->title = Yii::t('app', 'Update Post');
+$this->title = Yii::t('app', 'Update post');
 ?>
 <div class="row">
     <div class="content-block">
