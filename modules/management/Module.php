@@ -33,7 +33,7 @@ class Module extends \yii\base\Module
      */
     public function registerHelper()
     {
-        if (isset($this->_helper)) {
+        if (!isset($this->_helper)) {
             $this->_helper = new ManagementHelper();
         }
     }
