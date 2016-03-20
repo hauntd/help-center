@@ -69,28 +69,15 @@ class CategoryController extends ManagementController
     public function actionCreate()
     {
         $category = new Category();
-        $ajax = Yii::$app->request->isAjax;
 
         if ($category->load(Yii::$app->request->post())) {
-            if ($category->save()) {
-                if ($ajax) {
-                    $this->sendJson([
-                        'success' => true,
-                        'message' => Yii::t('app', 'Category added'),
-                        'category' => $category,
-                    ]);
+            $this->performModelSave($category, [
+                'success' => function() {
+                    return ['message' => Yii::t('management', 'Category has been added')];
+                },
+                'fallback' => function($category) {
+                    return $this->redirect(['update', 'id' => $category->id]);
                 }
-                $this->redirect(['index']);
-            } else {
-                if ($ajax) {
-                    $this->sendJson(['messages' => ActiveForm::validate($category)]);
-                }
-            }
-        }
-
-        if (Yii::$app->request->isAjax) {
-            return $this->renderAjax('create', [
-                'category' => $category,
             ]);
         }
 
@@ -107,28 +94,15 @@ class CategoryController extends ManagementController
     public function actionUpdate($id)
     {
         $category = $this->findModel(['id' => $id]);
-        $ajax = Yii::$app->request->isAjax;
 
         if ($category->load(Yii::$app->request->post())) {
-            if ($category->save()) {
-                if ($ajax) {
-                    $this->sendJson([
-                        'success' => true,
-                        'message' => Yii::t('app', 'Category updated'),
-                        'category' => $category,
-                    ]);
+            $this->performModelSave($category, [
+                'success' => function() {
+                    return ['message' => Yii::t('management', 'Category has been updated')];
+                },
+                'fallback' => function($category) {
+                    return $this->redirect(['update', 'id' => $category->id]);
                 }
-                $this->redirect(['index']);
-            } else {
-                if ($ajax) {
-                    $this->sendJson(['messages' => ActiveForm::validate($category)]);
-                }
-            }
-        }
-
-        if (Yii::$app->request->isAjax) {
-            return $this->renderAjax('update', [
-                'category' => $category,
             ]);
         }
 
@@ -148,7 +122,7 @@ class CategoryController extends ManagementController
         return count($tree) ? $tree : [
             [
                 'id' => 0,
-                'label' => Yii::t('app', 'No categories yet'),
+                'label' => Yii::t('management', 'No categories yet'),
                 'isEmpty' => true,
             ],
         ];
@@ -210,19 +184,18 @@ class CategoryController extends ManagementController
      */
     public function actionDelete($id)
     {
+        /* @var $category Category */
         $category = $this->findModel(['id' => $id]);
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        if ($category->delete()) {
-            $category->updateAll(['parentId' => $category->parentId], ['parentId' => $category->id]);
-            return [
-                'success' => true,
-                'message' => Yii::t('app', 'Category removed'),
-            ];
-        } else {
-            return [
-                'success' => false,
-                'message' => $category->errors,
-            ];
-        }
+        $this->performModelDelete($category, [
+            'afterDelete' => function($category) {
+                $category->updateAll(['parentId' => $category->parentId], ['parentId' => $category->id]);
+            },
+            'success' => function() {
+                return ['message' => Yii::t('management', 'Category removed')];
+            },
+            'error' => function($category) {
+                return ['message' => $category->errors];
+            }
+        ]);
     }
 }

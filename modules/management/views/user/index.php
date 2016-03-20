@@ -10,18 +10,29 @@ use yii\widgets\Pjax;
 /* @var $helper app\modules\management\components\ManagementHelper */
 
 $this->title = Yii::t('app', 'Users');
+$js = <<< 'JS'
+$(document).ready(function() {
+    var $body = $('body');
+    $body.on('afterSubmit', '.user-form form', function(event) {
+        $.pjax.reload({container: '#pjax-users'});
+    });
+});
+JS;
+
+$this->registerJs($js);
 ?>
 <div class="row">
     <div class="content-block">
         <div class="content-block-header">
             <h1><?= Html::encode($this->title) ?></h1>
             <div class="pull-right">
-                <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-xs btn-ghost btn-primary']) ?>
+                <?= Html::a(Yii::t('app', 'Create User'), ['create'],
+                    ['class' => 'btn btn-xs btn-ghost btn-primary btn-modal']) ?>
             </div>
         </div>
         <div class="content-block-body">
             <div class="wrapper-table">
-                <?php Pjax::begin(); ?>
+                <?php Pjax::begin(['id' => 'pjax-users']); ?>
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
@@ -68,6 +79,17 @@ $this->title = Yii::t('app', 'Users');
                             'filterOptions' => ['width' => 60],
                             'template' => '{update} {delete}',
                             'contentOptions' => ['data-title' => Yii::t('app', 'Actions')],
+                            'buttons' => [
+                                'update' => function ($url, $model, $key) {
+                                    $options = [
+                                        'title' => Yii::t('yii', 'Update'),
+                                        'aria-label' => Yii::t('yii', 'Update'),
+                                        'data-pjax' => '0',
+                                        'class' => 'btn-modal',
+                                    ];
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, $options);
+                                },
+                            ],
                         ],
                     ],
                 ]); ?>

@@ -14,6 +14,8 @@ class WebController extends Controller
 {
     /**
      * @param $data
+     * @return bool
+     * @throws \yii\base\ExitException
      */
     protected function sendJson($data)
     {
@@ -21,5 +23,7 @@ class WebController extends Controller
         Yii::$app->response->data = $data;
         Yii::$app->response->send();
         Yii::$app->end();
+
+        return true;
     }
 }

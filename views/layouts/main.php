@@ -17,7 +17,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="baseUrl" content="<?= \yii\helpers\Url::to('/', true) ?>">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,300,500,300italic&subset=latin,cyrillic' rel='stylesheet'
+    <link href='//fonts.googleapis.com/css?family=Roboto:300,400,500,700,300italic&subset=latin,cyrillic' rel='stylesheet'
           type='text/css'>
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>

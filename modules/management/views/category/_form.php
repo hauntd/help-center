@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $category app\modules\management\models\Category */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $formId string */
-/* @var $buttons array */
+/* @var $buttons string[] */
 
 $buttons = $buttons ?? [];
 
@@ -18,8 +18,8 @@ $buttons = $buttons ?? [];
     <?php $form = ActiveForm::begin(['options' => ['id' => $formId]]); ?>
 
     <?= $form->errorSummary($category) ?>
-    <?= $form->field($category, 'title')->textInput() ?>
-    <?= $form->field($category, 'alias')->textInput() ?>
+    <?= $form->field($category, 'title')->textInput(['autocomplete' => 'off']) ?>
+    <?= $form->field($category, 'alias')->textInput(['autocomplete' => 'off']) ?>
     <?= $form->field($category, 'isVisible')->checkbox() ?>
 
     <div class="form-group form-actions">

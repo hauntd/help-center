@@ -64,40 +64,52 @@ class UserController extends ManagementController
 
     /**
      * Creates a new User model.
-     * If creation is successful, the browser will be redirected to the 'update' page.
-     * @return mixed
+     * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new User();
+        $user = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['update', 'id' => $model->id]);
+        if ($user->load(Yii::$app->request->post())) {
+            $this->performModelSave($user, [
+                'success' => function() {
+                    return ['message' => Yii::t('management', 'User has been added')];
+                },
+                'fallback' => function($user) {
+                    return $this->redirect(['update', 'id' => $user->id]);
+                }
+            ]);
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'user' => $user,
             'helper' => $this->module->getHelper(),
         ]);
     }
 
     /**
      * Updates an existing User model.
-     * If update is successful, the browser will be refreshed.
-     * @param integer $id
-     * @return mixed
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws \yii\web\NotFoundHttpException
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel(['id' => $id]);
+        $user = $this->findModel(['id' => $id]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('primary', Yii::t('app', 'User has been updated.'));
-            return $this->refresh();
+        if ($user->load(Yii::$app->request->post())) {
+            $this->performModelSave($user, [
+                'success' => function() {
+                    return ['message' => Yii::t('management', 'User has been updated')];
+                },
+                'fallback' => function($user) {
+                    return $this->redirect(['update', 'id' => $user->id]);
+                }
+            ]);
         }
 
         return $this->render('update', [
-            'model' => $model,
+            'user' => $user,
             'helper' => $this->module->getHelper(),
         ]);
     }
@@ -115,7 +127,6 @@ class UserController extends ManagementController
             throw new Exception('You can not delete active user');
         }
         $this->findModel(['id' => $id])->delete();
-        Yii::$app->session->setFlash('danger', Yii::t('app', 'User has been deleted.'));
 
         return $this->redirect(['index']);
     }

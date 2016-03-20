@@ -76,6 +76,9 @@ strong {
       border-color: @brand-primary-active;
       color: #fff;
     }
+    &:disabled {
+      border-color: @brand-primary;
+    }
   }
   &.btn-success {
     background: @brand-success;
@@ -87,6 +90,9 @@ strong {
       background: @brand-success-active;
       border-color: @brand-success-active;
       color: #fff;
+    }
+    &:disabled {
+      border-color: @brand-success;
     }
   }
   &.btn-info {
@@ -102,6 +108,9 @@ strong {
       border-color: @brand-info-active;
       color: darken(@brand-info-active, 40%);
     }
+    &:disabled {
+      border-color: @brand-info;
+    }
   }
   &.btn-warning {
     background: @brand-warning;
@@ -114,6 +123,9 @@ strong {
       border-color: @brand-warning-active;
       color: #fff;
     }
+    &:disabled {
+      border-color: @brand-warning;
+    }
   }
   &.btn-danger {
     background: @brand-danger;
@@ -125,6 +137,9 @@ strong {
       background: @brand-danger-active;
       border-color: @brand-danger-active;
       color: #fff;
+    }
+    &:disabled {
+      border-color: @brand-danger;
     }
   }
 }
@@ -690,7 +705,7 @@ strong {
   }
 }
 .modal.fade .modal-dialog {
-  top: 450px;
+  top: 400px;
   opacity: 0;
   .transform(scale(0.1));
   .transition(all 0.1s);
