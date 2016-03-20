@@ -24,6 +24,7 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
+        Yii::setAlias('management', dirname(__FILE__));
         $this->registerHelper();
         $this->registerTranslations();
     }

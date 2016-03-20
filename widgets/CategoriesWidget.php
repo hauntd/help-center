@@ -12,6 +12,15 @@ use yii\helpers\Html;
  */
 class CategoriesWidget extends Widget
 {
+    /** @var string */
+    public $rootCategoryClass;
+
+    /** @var string */
+    public $rootCategoryWrapperClass;
+
+    /** @var string */
+    public $childCategoryClass;
+
     public function run()
     {
         $categories = Category::find()->all();
@@ -31,14 +40,14 @@ class CategoriesWidget extends Widget
         foreach ($categories as $category) {
             if ($category->parentId == $parentId) {
                 if ($level == 0) {
-                    $html .= Html::beginTag('div', ['class' => 'col-sm-3 categories-block']);
+                    $html .= Html::beginTag('div', ['class' => $this->rootCategoryWrapperClass]);
                     $html .= Html::a($category->title,
                         ['/frontend/post/by-category', 'categoryAlias' => $category->alias],
-                        ['class' => 'category-root']);
+                        ['class' => $this->rootCategoryClass]);
                 } else {
                     $html .= '<li>' .Html::a($category->title,
                             ['/frontend/post/by-category', 'categoryAlias' => $category->alias],
-                            ['class' => 'category-child']) . '</li>';
+                            ['class' => $this->childCategoryClass]) . '</li>';
                 }
                 $children = $this->renderCategories($categories, $category->id, $level + 1);
                 if ($children) {

@@ -8,7 +8,7 @@ use app\widgets\CategoriesWidget;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $searchForm app\modules\frontend\forms\SearchForm */
 
-$this->title = 'Help Center App';
+$this->title = Yii::$app->name;
 $this->params['navbar.search.visible'] = false;
 $this->params['navbar.class'] = 'navbar-default navbar-homepage';
 ?>
@@ -23,7 +23,11 @@ $this->params['navbar.class'] = 'navbar-default navbar-homepage';
             <?php ActiveForm::end(); ?>
         </div>
         <div class="homepage-categories">
-            <?= CategoriesWidget::widget([]) ?>
+            <?= CategoriesWidget::widget([
+                'rootCategoryWrapperClass' => 'col-xs-12 col-sm-3 categories-block',
+                'rootCategoryClass' => 'category-root',
+                'childCategoryClass' => 'category-child',
+            ]) ?>
         </div>
     </div>
 </div>

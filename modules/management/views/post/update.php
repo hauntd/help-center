@@ -13,13 +13,7 @@ $this->title = Yii::t('app', 'Update post');
         <div class="content-block-header">
             <h1><?= Html::encode($this->title) ?></h1>
             <div class="pull-right">
-                <?= Html::a('&larr; ' . Yii::t('app', 'Back to Posts'), ['index'], ['class' => 'btn btn-xs btn-ghost btn-default']) ?>
-                <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $post->id], [
-                    'class' => 'btn btn-xs btn-ghost btn-danger',
-                    'data' => [
-                        'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                        'method' => 'post',
-                    ]]) ?>
+                <?= Html::a('&larr; ' . Yii::t('app', 'Back to posts'), ['index'], ['class' => 'btn btn-xs btn-ghost btn-default']) ?>
             </div>
         </div>
         <div class="content-block-body">
@@ -27,6 +21,15 @@ $this->title = Yii::t('app', 'Update post');
                 'post' => $post,
                 'categories' => $categories,
                 'formId' => 'post-update-form',
+                'buttons' => [
+                    Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $post->id], [
+                        'class' => 'btn btn-danger',
+                        'data' => [
+                            'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                            'method' => 'post',
+                        ]
+                    ]),
+                ]
             ]) ?>
         </div>
     </div>

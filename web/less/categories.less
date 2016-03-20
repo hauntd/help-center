@@ -1,0 +1,25 @@
+@import "mixins.less";
+@import "variables.less";
+
+.sidebar-categories {
+  ul {
+    padding-left: 17px;
+    list-style-type: square;
+    li {
+      line-height: 2em;
+    }
+  }
+  .categories-block {
+    margin-bottom: 15px;
+  }
+  .category-root {
+    display: block;
+    font-size: 11pt;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    &:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+}
