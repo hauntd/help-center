@@ -18,7 +18,7 @@ class PostSearch extends Post
     public function rules()
     {
         return [
-            [['id', 'categoryId', 'order', 'isVisible', 'createdAt', 'updatedAt'], 'integer'],
+            [['id', 'categoryId', 'sort', 'isVisible', 'createdAt', 'updatedAt'], 'integer'],
             [['alias', 'title', 'content'], 'safe'],
         ];
     }
@@ -60,7 +60,7 @@ class PostSearch extends Post
         $query->andFilterWhere([
             'id' => $this->id,
             'categoryId' => $this->categoryId,
-            'order' => $this->order,
+            'sort' => $this->sort,
             'isVisible' => $this->isVisible,
             'createdAt' => $this->createdAt,
             'updatedAt' => $this->updatedAt,

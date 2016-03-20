@@ -33,7 +33,7 @@ $this->title = Yii::t('app', 'Posts');
                         ],
                         'title',
                         'categoryId',
-                        'order',
+                        'sort',
                         'isVisible',
                         'alias',
                         // 'content:ntext',
