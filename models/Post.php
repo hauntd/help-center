@@ -12,7 +12,7 @@ use omgdef\multilingual\MultilingualBehavior;
  *
  * @property integer $id
  * @property integer $categoryId
- * @property integer $order
+ * @property integer $sort
  * @property integer $isVisible
  * @property string $alias
  * @property string $title
@@ -61,7 +61,7 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             [['categoryId', 'alias', 'title', 'content'], 'required'],
-            [['categoryId', 'isVisible', 'order'], 'integer'],
+            [['categoryId', 'isVisible', 'sort'], 'integer'],
             [['content'], 'string'],
             [['createdAt', 'updatedAt'], 'safe'],
             [['alias', 'title'], 'string', 'max' => 255],
@@ -81,7 +81,7 @@ class Post extends \yii\db\ActiveRecord
             'alias' => Yii::t('app', 'Alias'),
             'title' => Yii::t('app', 'Title'),
             'content' => Yii::t('app', 'Content'),
-            'order' => Yii::t('app', 'Order'),
+            'sort' => Yii::t('app', 'Sort'),
             'createdAt' => Yii::t('app', 'Created'),
             'updatedAt' => Yii::t('app', 'Updated'),
         ];
