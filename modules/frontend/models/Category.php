@@ -17,6 +17,6 @@ class Category extends \app\models\Category
     {
         return parent::find()
             ->andWhere(['category.isVisible' => 1])
-            ->orderBy('sort');
+            ->orderBy('category.sort');
     }
 }

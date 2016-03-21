@@ -6,20 +6,36 @@
     padding-left: 17px;
     list-style-type: square;
     li {
-      line-height: 2em;
+      line-height: 1.5em;
     }
   }
   .categories-block {
     margin-bottom: 15px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    .clearfix;
+  }
+  .category-item {
+    margin-bottom: 10px;
   }
   .category-root {
-    display: block;
     font-size: 11pt;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    font-weight: 500;
+    list-style: none;
     &:last-child {
       border-bottom: 0;
       margin-bottom: 0;
     }
+  }
+  .category-child {
+  }
+  .category-post-count {
+    float: right;
+    background: @brand-info;
+    color: @brand-primary;
+    font-size: 10pt;
+    padding: 0 6px;
+    .rounded(2px);
   }
 }

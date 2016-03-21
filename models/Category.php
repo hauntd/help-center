@@ -21,6 +21,9 @@ use Yii;
  */
 class Category extends \yii\db\ActiveRecord
 {
+    /** @var integer */
+    public $postCount;
+
     /**
      * @inheritdoc
      */
@@ -58,7 +61,7 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'alias', 'isVisible'], 'required'],
-            [['parentId', 'isVisible', 'sort'], 'integer'],
+            [['parentId', 'isVisible', 'sort', 'postCount'], 'integer'],
             [['createdAt', 'updatedAt'], 'safe'],
             [['alias'], 'required'],
             [['alias'], 'string', 'max' => 32],
@@ -80,5 +83,13 @@ class Category extends \yii\db\ActiveRecord
             'createdAt' => Yii::t('app', 'Created'),
             'updatedAt' => Yii::t('app', 'Updated'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPosts()
+    {
+        return $this->hasMany(Post::class, ['categoryId' => 'id']);
     }
 }

@@ -4,9 +4,10 @@ namespace app\modules\frontend\controllers;
 
 use app\components\WebController;
 use app\modules\frontend\forms\SearchForm;
+use app\modules\frontend\models\Category;
 use app\modules\frontend\models\Post;
 use app\modules\frontend\models\PostSearch;
-use cebe\markdown\Markdown;
+use cebe\markdown\GithubMarkdown;
 use Yii;
 use yii\web\NotFoundHttpException;
 
@@ -44,7 +45,9 @@ class PostController extends WebController
     public function actionView($categoryAlias, $postAlias)
     {
         $post = $this->findPost(['category.alias' => $categoryAlias, 'post.alias' => $postAlias]);
-        $parser = new Markdown();
+        $parser = new GithubMarkdown();
+        $parser->html5 = true;
+        $parser->enableNewlines = true;
         return $this->render('view', [
             'post' => $post,
             'content' => $parser->parse($post->content),
@@ -55,15 +58,21 @@ class PostController extends WebController
      * List posts by category
      * @param $categoryAlias
      * @return string
+     * @throws NotFoundHttpException
      */
     public function actionByCategory($categoryAlias)
     {
+        $category = Category::findOne(['alias' => $categoryAlias]);
+        if ($category == null) {
+            throw new NotFoundHttpException();
+        }
         $searchModel = new PostSearch();
         $dataProvider = $searchModel->search(['categoryAlias' => $categoryAlias]);
 
         return $this->render('list', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'category' => $category,
         ]);
     }
 
