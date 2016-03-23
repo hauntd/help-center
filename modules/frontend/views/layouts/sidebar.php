@@ -1,11 +1,13 @@
 <?php
 
 use app\widgets\CategoriesWidget;
+use yii\widgets\Pjax;
 
 /** @var string $content */
 /** @var \yii\web\View $this */
 
 ?>
+<?php Pjax::begin(); ?>
 <div class="row">
     <div class="col-xs-12 col-sm-4 col-md-3">
         <div class="content-block">
@@ -33,3 +35,4 @@ use app\widgets\CategoriesWidget;
         </div>
     </div>
 </div>
+<?php Pjax::end(); ?>

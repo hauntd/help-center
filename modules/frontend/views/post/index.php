@@ -36,11 +36,11 @@ $this->params['navbar.class'] = 'navbar-default navbar-homepage';
         <div class="content-block-body clearfix row">
             <div class="col-xs-12 col-sm-6 homepage-popular-questions">
                 <h4>Popular questions</h4>
-                <p><a href="#">What is love? Baby dont hurt me, dont hurt me, no more</a></p>
-                <p><a href="#">What is love? Baby dont hurt me, dont hurt me, no more</a></p>
-                <p><a href="#">What is love? Baby dont hurt me, dont hurt me, no more</a></p>
-                <p><a href="#">What is love? Baby dont hurt me, dont hurt me, no more</a></p>
-                <p><a href="#">What is love? Baby dont hurt me, dont hurt me, no more</a></p>
+                <p><a href="#">What is Help-Center and how I can use it</a></p>
+                <p><a href="#">How can you help us</a></p>
+                <p><a href="#">Technical details of the application</a></p>
+                <p><a href="#">Installation</a></p>
+                <p><a href="#">Demo</a></p>
             </div>
             <div class="col-xs-12 col-sm-6 homepage-popular-tags">
                 <h4>Popular tags</h4>
@@ -48,9 +48,8 @@ $this->params['navbar.class'] = 'navbar-default navbar-homepage';
                 <a href="#" class="tag">#common</a>
                 <a href="#" class="tag">#mail</a>
                 <a href="#" class="tag">#options</a>
-                <a href="#" class="tag">#payment</a>
-                <a href="#" class="tag">#ship</a>
-                <a href="#" class="tag">#notifications</a>
+                <a href="#" class="tag">#tech</a>
+                <a href="#" class="tag">#plugins</a>
             </div>
         </div>
     </div>
