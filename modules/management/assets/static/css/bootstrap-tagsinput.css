@@ -44,3 +44,6 @@
 .bootstrap-tagsinput .tag [data-role="remove"]:hover:active {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
+.bootstrap-tagsinput .label-info {
+  background: #3498db;
+}
