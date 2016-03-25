@@ -1,9 +1,9 @@
 <?php
 
-use ijackua\lepture\Markdowneditor;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use vova07\imperavi\Widget as Editor;
 
 /* @var $this yii\web\View */
 /* @var $post app\modules\management\models\Post */
@@ -22,13 +22,15 @@ $buttons = $buttons ?? [];
     <?= $form->field($post, 'alias')->textInput(['maxlength' => true]) ?>
     <?= $form->field($post, 'categoryId')->dropDownList(ArrayHelper::map($categories, 'id', 'title')) ?>
     <?= $form->field($post, 'isVisible')->checkbox() ?>
-    <?= Markdowneditor::widget([
-        'model' => $post,
-        'attribute' => 'content',
-        'markedOptions' => [
-            'tables' => false
+    <?= $form->field($post, 'content')->widget(Editor::class, [
+        'settings' => [
+            'minHeight' => 200,
+            'plugins' => [
+                'clips',
+                'fullscreen'
+            ]
         ]
-    ]) ?>
+    ]); ?>
     <div class="form-group">
         <?= Html::submitButton($post->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'),
             ['class' => 'btn btn-primary']) ?>

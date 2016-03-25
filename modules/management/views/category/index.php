@@ -1,7 +1,5 @@
 <?php
 
-use app\assets\AppAsset;
-use app\assets\jqTreeAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -10,13 +8,11 @@ use yii\helpers\Url;
 /* @var $category app\modules\management\models\Category */
 
 $this->title = Yii::t('app', 'Categories');
-$this->registerJsFile('@web/js/management-categories.js', ['depends' => AppAsset::class]);
-jqTreeAsset::register($this);
 ?>
 <div class="row">
     <div class="content-block content-block-categories">
         <div class="content-block-header">
-            <h1>Categories</h1>
+            <h1 class="title">Categories</h1>
             <div class="pull-right">
                 <?= Html::a(Yii::t('app', 'New category'), Url::to(['create']),
                     ['class' => 'btn btn-xs btn-primary btn-ghost btn-modal']); ?>

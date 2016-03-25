@@ -8,10 +8,11 @@ use app\modules\management\controllers\PostController;
 use app\modules\management\controllers\CategoryController;
 use app\modules\management\models\User;
 use rmrevin\yii\fontawesome\FA;
-
+use app\modules\management\assets\ManagementAsset;
 /** @var string $content */
 /** @var \yii\web\View $this */
 
+ManagementAsset::register($this);
 ?>
 <?php $this->beginContent('@app/views/layouts/main.php'); ?>
 

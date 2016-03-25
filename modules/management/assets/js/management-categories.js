@@ -2,6 +2,9 @@ var categories = {
     treeElement: null,
     init: function() {
         this.treeElement = $('#category-list');
+        if (this.treeElement.length) {
+            return false;
+        }
         var el = this.treeElement;
         el.on('click', '.jqtree-update', function(event) {
             var nodeId = $(this).attr('data-node-id'),
@@ -120,6 +123,7 @@ var categories = {
             requestParameters['data'] = requestData;
             $.ajax(requestParameters);
         });
+        return true;
     },
     display: function() {
         var options = {
@@ -187,9 +191,7 @@ $(document).ready(function() {
 
     categories.init();
     categories.display();
-
     $body.on('afterSubmit', '.category-form form', function(event) {
         categories.reload();
     });
-
 });

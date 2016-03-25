@@ -4,6 +4,8 @@ namespace app\modules\management;
 
 use Yii;
 use app\modules\management\components\ManagementHelper;
+use app\modules\management\models\Post;
+use yii\base\Event;
 
 /**
  * @author Alexander Kononenko <contact@hauntd.me>

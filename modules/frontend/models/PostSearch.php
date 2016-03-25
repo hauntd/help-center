@@ -15,16 +15,13 @@ class PostSearch extends Post
     /** @var string */
     public $query;
 
-    /** @var string */
-    public $categoryAlias;
-
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['query', 'categoryAlias'], 'string', 'min' => 1, 'max' => 255],
+            [['query'], 'string', 'min' => 1, 'max' => 255],
         ];
     }
 
@@ -37,33 +34,37 @@ class PostSearch extends Post
     }
 
     /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
+     * @param Category $category
+     * @return array
      */
-    public function search($params)
+    public function findPostsWithCategory(Category $category)
     {
-        $query = Post::find();
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'pageSize' => Yii::$app->params['pageSize'],
-            ],
-        ]);
-
-        $this->setAttributes($params);
+        $subCategories = Category::findAll(['category.parentId' => $category->id]);
+        $ids = [$category->id];
+        foreach ($subCategories as $subCategory) {
+            $ids[] = $subCategory->id;
+        }
+        $query = $this->find();
+        $query->orderBy('category.sort');
+        $query->andWhere(['in', 'post.categoryId', $ids]);
 
         if (!$this->validate()) {
-            return $dataProvider;
+            return [];
         }
-
-        $query->andWhere(['category.alias' => $this->categoryAlias]);
         $query->andFilterWhere(['like', 'title', $this->query])
             ->andFilterWhere(['like', 'content', $this->query]);
 
-        return $dataProvider;
+        $items = [];
+        foreach ($query->all() as $post) {
+            /* @var $post Post */
+            $items[$post->category->alias]['category'] = $post->category;
+            $items[$post->category->alias]['posts'][] = $post;
+        }
+
+        return $items;
+    }
+
+    public function findPostsWithQuery($query)
+    {
     }
 }

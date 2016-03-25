@@ -50,7 +50,7 @@ class Category extends \yii\db\ActiveRecord
             'sortable' => [
                 'class' => SortableBehavior::class,
                 'query' => ['parentId'],
-            ]
+            ],
         ];
     }
 
@@ -83,6 +83,14 @@ class Category extends \yii\db\ActiveRecord
             'createdAt' => Yii::t('app', 'Created'),
             'updatedAt' => Yii::t('app', 'Updated'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getChildren()
+    {
+        return $this->hasMany(Category::class, ['id' => 'parentId']);
     }
 
     /**

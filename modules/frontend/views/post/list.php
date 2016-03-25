@@ -1,28 +1,25 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ListView;
+use app\widgets\PostsWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\frontend\models\PostSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $query string */
 /* @var $category app\modules\frontend\models\Category */
 
 $this->title = Yii::t('app', 'Posts');
 $this->beginContent('@frontend/views/layouts/sidebar.php');
 ?>
 
-<h1><?= Html::encode($category->title) ?></h1>
-<?= ListView::widget([
-    'options' => ['class' => 'list-view post-list-view'],
-    'dataProvider' => $dataProvider,
-    'layout' => "{items}\n{pager}\n",
-    'itemView' => function($post, $key, $index) {
-        return $this->render('_post', [
-            'post' => $post,
-            'key' => $key,
-            'index' => $index,
-        ]);
-    },
-]); ?>
+<h1 class="title"><?= Html::encode($category->title) ?></h1>
+<div class="clearfix">
+    <?= PostsWidget::widget([
+        'items' => $items,
+        'renderCategories' => $category->parentId == null,
+        'renderPreviews' => $category->parentId != null,
+        'postView' => '_post',
+        'postPreview' => '_post_preview',
+        'emptyView' => '_empty',
+    ]); ?>
+</div>
 <?php $this->endContent(); ?>

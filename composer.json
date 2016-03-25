@@ -22,7 +22,7 @@
         "bower-asset/bootbox.js": "^4.4",
         "bower-asset/messenger": "^1.4",
         "ijackua/yii2-lepture-markdown-editor-widget": "^1.0",
-        "cebe/markdown": "~1.0.1"
+        "vova07/yii2-imperavi-widget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

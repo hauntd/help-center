@@ -1,9 +1,5 @@
 @import "mixins.less";
 
-strong {
-  font-weight: 500;
-}
-
 // Buttons
 .btn {
   border-color: transparent;
@@ -540,36 +536,49 @@ strong {
   }
   .content-block-header, .content-block-body {
     h1, h2, h3, h4, h5, h6 {
+      color: @color-default;
+      margin-top: 0;
+    }
+    h1 {
+      font-size: 15pt;
+      font-weight: 500;
+    }
+    h2 {
+      font-size: 13pt;
+      font-weight: 500;
+    }
+    h1.title, h2.title, h3.title, h4.title, h5.title, h6.title {
       font-weight: normal;
       margin-top: 0;
       margin-bottom: 0;
+      color: @foreground-default;
       strong {
         font-weight: 500;
       }
     }
-    h1 {
+    h1.title {
       font-size: 14pt;
     }
-    h2 {
+    h2.title {
       font-size: 14pt;
     }
-    h3 {
+    h3.title {
       font-size: 13pt;
     }
-    h4 {
+    h4.title {
       font-size: 12pt;
     }
-    h5 {
+    h5.title {
       font-size: 11pt;
     }
-    h6 {
+    h6.title {
       font-size: 10pt;
       color: #748797;
     }
   }
   .content-block-body {
     padding: 10px 15px;
-    h1, h2, h3, h4, h5, h6 {
+    h1.title, h2.title, h3.title, h4.title, h5.title, h6.title {
       padding-bottom: 10px;
       margin: 25px 0 10px 0;
       border-bottom: 1px solid @cb-heading-border-color;

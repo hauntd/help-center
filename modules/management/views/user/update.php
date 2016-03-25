@@ -11,7 +11,7 @@ $this->title = sprintf('%s: %s', Yii::t('app', 'Update user'), $user->username);
 <div class="row">
     <div class="content-block">
         <div class="content-block-header">
-            <h1><?= Html::encode($this->title) ?></h1>
+            <h1 class="title"><?= Html::encode($this->title) ?></h1>
             <div class="pull-right">
                 <?= Html::a('&larr; ' . Yii::t('app', 'Back to users'), ['index'],
                     ['class' => 'btn btn-xs btn-ghost btn-default btn-modal-close']) ?>

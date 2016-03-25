@@ -4,7 +4,6 @@ namespace app\models;
 
 use Yii;
 use creocoder\taggable\TaggableBehavior;
-use omgdef\multilingual\MultilingualBehavior;
 
 /**
  * @author Alexander Kononenko <contact@hauntd.me>
@@ -17,6 +16,8 @@ use omgdef\multilingual\MultilingualBehavior;
  * @property string $alias
  * @property string $title
  * @property string $content
+ * @property string $contentCompiled
+ * @property string $contentPreview
  * @property string $createdAt
  * @property string $updatedAt
  *
@@ -25,6 +26,9 @@ use omgdef\multilingual\MultilingualBehavior;
  */
 class Post extends \yii\db\ActiveRecord
 {
+    /** @var string */
+    public $categoryClass = Category::class;
+
     /**
      * @inheritdoc
      */
@@ -60,9 +64,9 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['categoryId', 'alias', 'title', 'content'], 'required'],
+            [['categoryId', 'title', 'content'], 'required'],
             [['categoryId', 'isVisible', 'sort'], 'integer'],
-            [['content'], 'string'],
+            [['content', 'contentCompiled', 'contentPreview'], 'string'],
             [['createdAt', 'updatedAt'], 'safe'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['alias'], 'unique'],
@@ -92,7 +96,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(Category::class, ['id' => 'categoryId']);
+        return $this->hasOne($this->categoryClass, ['id' => 'categoryId']);
     }
 
     /**

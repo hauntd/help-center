@@ -9,6 +9,7 @@ use app\modules\frontend\models\Post;
 use app\modules\frontend\models\PostSearch;
 use cebe\markdown\GithubMarkdown;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -44,13 +45,13 @@ class PostController extends WebController
      */
     public function actionView($categoryAlias, $postAlias)
     {
-        $post = $this->findPost(['category.alias' => $categoryAlias, 'post.alias' => $postAlias]);
-        $parser = new GithubMarkdown();
-        $parser->html5 = true;
-        $parser->enableNewlines = true;
+        $post = $this->findPost([
+            'category.alias' => $categoryAlias,
+            'post.alias' => $postAlias
+        ]);
+
         return $this->render('view', [
             'post' => $post,
-            'content' => $parser->parse($post->content),
         ]);
     }
 
@@ -62,17 +63,18 @@ class PostController extends WebController
      */
     public function actionByCategory($categoryAlias)
     {
-        $category = Category::findOne(['alias' => $categoryAlias]);
-        if ($category == null) {
-            throw new NotFoundHttpException();
+        /* @var Category $category */
+        $postSearch = new PostSearch();
+        $category = $this->findCategoryWithAlias($categoryAlias);
+        $items = $postSearch->findPostsWithCategory($category);
+
+        if (!count($items)) {
+            throw new NotFoundHttpException(Yii::t('app', 'Posts not found'));
         }
-        $searchModel = new PostSearch();
-        $dataProvider = $searchModel->search(['categoryAlias' => $categoryAlias]);
 
         return $this->render('list', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
             'category' => $category,
+            'items' => $items,
         ]);
     }
 
@@ -92,9 +94,24 @@ class PostController extends WebController
             ->one();
 
         if ($post === null) {
-            throw new NotFoundHttpException();
+            throw new NotFoundHttpException(Yii::t('app', 'Post not found'));
         }
 
         return $post;
+    }
+
+    /**
+     * @param $alias
+     * @return null|static
+     * @throws NotFoundHttpException
+     */
+    protected  function findCategoryWithAlias($alias)
+    {
+        $category = Category::findOne(['alias' => $alias]);
+        if ($category == null) {
+            throw new NotFoundHttpException(Yii::t('app', 'Category not found'));
+        }
+
+        return $category;
     }
 }

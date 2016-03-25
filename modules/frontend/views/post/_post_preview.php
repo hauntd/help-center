@@ -9,4 +9,7 @@ use yii\helpers\Html;
         ['/frontend/post/view', 'categoryAlias' => $post->category->alias, 'postAlias' => $post->alias],
         ['class' => 'post-item-link']
     ); ?>
+    <div class="post-preview">
+        <?= Html::encode($post->contentPreview) ?>
+    </div>
 </div>

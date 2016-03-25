@@ -1,11 +1,36 @@
 @import "mixins.less";
 @import "variables.less";
 
-.post-list-view {
+.posts-widget {
+  &.with-categories {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  &.with-previews {
+    .post-item {
+      margin-bottom: 15px;
+    }
+  }
+  .subcategory {
+    h2 {
+      color: @color-default;
+      font-weight: 300;
+      font-size: 13pt;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
   .post-item {
+    margin-top: 6px;
+    margin-bottom: 6px;
     .post-item-link {
-      line-height: 2em;
       font-size: 12pt;
+    }
+    .post-preview {
+      color: #777;
+      p {
+        margin: 0;
+      }
     }
   }
 }

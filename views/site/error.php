@@ -11,7 +11,7 @@ $this->title = $name;
 ?>
 <div class="content-block">
     <div class="content-block-body">
-        <h1><?= Html::encode($this->title) ?></h1>
+        <h1 class="title"><?= Html::encode($this->title) ?></h1>
 
         <div class="alert alert-danger">
             <?= nl2br(Html::encode($message)) ?>

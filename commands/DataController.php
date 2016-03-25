@@ -3,6 +3,7 @@
 namespace app\commands;
 
 use app\models\Category;
+use app\models\Post;
 use yii\console\Controller;
 
 /**
@@ -17,10 +18,10 @@ class DataController extends Controller
             return false;
         }
         Category::deleteAll();
-        $data = [
-            ['id' => 1, 'alias' => 'cat1',  'title' => 'Category 1'],
-            ['id' => 2, 'alias' => 'cat11', 'title' => 'Category 1.1', 'parentId' => 1],
-            ['id' => 3, 'alias' => 'cat12', 'title' => 'Category 1.2', 'parentId' => 1],
+        $categories = [
+            ['id' => 1, 'alias' => 'general',  'title' => 'General'],
+            ['id' => 2, 'alias' => 'general-about', 'title' => 'About this script', 'parentId' => 1],
+            ['id' => 3, 'alias' => 'general-faq', 'title' => 'F.A.Q.', 'parentId' => 1],
             ['id' => 4, 'alias' => 'cat13', 'title' => 'Category 1.3', 'parentId' => 1],
             ['id' => 5, 'alias' => 'cat14', 'title' => 'Category 1.4', 'parentId' => 1],
             ['id' => 6, 'alias' => 'cat15', 'title' => 'Category 1.5', 'parentId' => 1],
@@ -33,14 +34,38 @@ class DataController extends Controller
             ['id' => 13, 'alias' => 'cat32', 'title' => 'Category 3.2', 'parentId' => 11],
             ['id' => 14, 'alias' => 'cat33', 'title' => 'Category 3.3', 'parentId' => 11],
         ];
-        foreach ($data as $item) {
+        foreach ($categories as $item) {
             $model = new Category();
             $model->setAttributes($item, false);
             $model->save();
         }
+        Post::deleteAll();
+        $posts = [
+            ['title' => 'Post 1 - 1', 'alias' => 'post11', 'categoryId' => 1],
+            ['title' => 'Post 1 - 2', 'alias' => 'post12', 'categoryId' => 1],
+            ['title' => 'Post 1 - 3', 'alias' => 'post13', 'categoryId' => 1],
+            ['title' => 'Post 1 - 4', 'alias' => 'post14', 'categoryId' => 1],
+
+            ['title' => 'Post 1.1 - 1', 'alias' => 'post111', 'categoryId' => 2],
+            ['title' => 'Post 1.1 - 2', 'alias' => 'post112', 'categoryId' => 2],
+            ['title' => 'Post 1.1 - 3', 'alias' => 'post113', 'categoryId' => 2],
+            ['title' => 'Post 1.1 - 4', 'alias' => 'post113', 'categoryId' => 2],
+
+            ['title' => 'Post 1.2 - 1', 'alias' => 'post121', 'categoryId' => 3],
+            ['title' => 'Post 1.2 - 2', 'alias' => 'post122', 'categoryId' => 3],
+            ['title' => 'Post 1.2 - 3', 'alias' => 'post123', 'categoryId' => 3],
+
+            ['title' => 'Post 1.3 - 1', 'alias' => 'post131', 'categoryId' => 4],
+            ['title' => 'Post 1.3 - 2', 'alias' => 'post132', 'categoryId' => 4],
+            ['title' => 'Post 1.3 - 3', 'alias' => 'post133', 'categoryId' => 4],
+        ];
+        foreach ($posts as $item) {
+            $model = new Post();
+            $model->setAttributes($item, false);
+            $model->save(false);
+        }
         $this->printTree(Category::find()->all());
     }
-
 
     /**
      * Build categories tree

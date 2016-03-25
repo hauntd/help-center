@@ -55,7 +55,7 @@ class CategoriesWidget extends Widget
                 $html .= sprintf('<li class="category-item %s">%s %s</li>',
                     $level ? $this->childCategoryClass : $this->rootCategoryClass,
                     Html::a($category->title, ['/frontend/post/by-category', 'categoryAlias' => $category->alias]),
-                    $this->showPostCount ? Html::tag('span', $category->postCount, ['class' => $this->postCountClass]) : '');
+                    $this->showPostCount && $level ? Html::tag('span', $category->postCount, ['class' => $this->postCountClass]) : '');
                 $children = $this->renderCategories($categories, $category->id, $level + 1);
                 if ($children) {
                     $html .= Html::tag('ul', $children, ['class' => 'categories-children']);

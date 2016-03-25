@@ -24,7 +24,7 @@ $this->registerJs($js);
 <div class="row">
     <div class="content-block">
         <div class="content-block-header">
-            <h1><?= Html::encode($this->title) ?></h1>
+            <h1 class="title"><?= Html::encode($this->title) ?></h1>
             <div class="pull-right">
                 <?= Html::a(Yii::t('app', 'Create user'), ['create'],
                     ['class' => 'btn btn-xs btn-ghost btn-primary btn-modal']) ?>

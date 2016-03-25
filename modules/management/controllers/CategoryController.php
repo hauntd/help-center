@@ -4,6 +4,7 @@ namespace app\modules\management\controllers;
 
 use app\modules\management\forms\CategorySortForm;
 use app\modules\management\models\Category;
+use app\modules\management\models\Post;
 use app\modules\management\models\User;
 use app\components\AccessRule;
 use Yii;
@@ -187,7 +188,8 @@ class CategoryController extends ManagementController
         /* @var $category Category */
         $category = $this->findModel(['id' => $id]);
         $this->performModelDelete($category, [
-            'afterDelete' => function($category) {
+            'afterDelete' => function(Category $category) {
+                Post::updateAll(['categoryId' => null], ['categoryId' => $category->id]);
                 $category->updateAll(['parentId' => $category->parentId], ['parentId' => $category->id]);
             },
             'success' => function() {

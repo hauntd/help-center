@@ -10,7 +10,7 @@ use app\widgets\CategoriesWidget;
     <div class="col-xs-12 col-sm-4 col-md-3">
         <div class="content-block">
             <div class="content-block-header">
-                <h2><?= Yii::t('app', 'Categories') ?></h2>
+                <h2 class="title"><?= Yii::t('app', 'Categories') ?></h2>
             </div>
             <div class="content-block-body">
                 <div class="sidebar-categories">

@@ -18,7 +18,7 @@ class Category extends \app\models\Category
     }
 
     /**
-     * Build categories tree
+     * Builds categories tree
      * @param $categories
      * @param null $parentId
      * @param int $level

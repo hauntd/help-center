@@ -35,7 +35,7 @@ $this->params['navbar.class'] = 'navbar-default navbar-homepage';
     <div class="content-block">
         <div class="content-block-body clearfix row">
             <div class="col-xs-12 col-sm-6 homepage-popular-questions">
-                <h4>Popular questions</h4>
+                <h4 class="title">Popular questions</h4>
                 <p><a href="#">What is Help-Center and how I can use it</a></p>
                 <p><a href="#">How can you help us</a></p>
                 <p><a href="#">Technical details of the application</a></p>
@@ -43,7 +43,7 @@ $this->params['navbar.class'] = 'navbar-default navbar-homepage';
                 <p><a href="#">Demo</a></p>
             </div>
             <div class="col-xs-12 col-sm-6 homepage-popular-tags">
-                <h4>Popular tags</h4>
+                <h4 class="title">Popular tags</h4>
                 <a href="#" class="tag">#general</a>
                 <a href="#" class="tag">#common</a>
                 <a href="#" class="tag">#mail</a>

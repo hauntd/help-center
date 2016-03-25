@@ -13,7 +13,7 @@ $this->title = Yii::t('app', 'Posts');
 <div class="row">
     <div class="content-block">
         <div class="content-block-header">
-            <h1><?= Html::encode($this->title) ?></h1>
+            <h1 class="title"><?= Html::encode($this->title) ?></h1>
             <div class="pull-right">
                 <?= Html::a(Yii::t('app', 'New post'), ['create'], ['class' => 'btn btn-xs btn-ghost btn-primary']) ?>
             </div>
@@ -32,13 +32,9 @@ $this->title = Yii::t('app', 'Posts');
                             'contentOptions' => ['data-title' => $searchModel->getAttributeLabel('id')],
                         ],
                         'title',
-                        'categoryId',
-                        'sort',
-                        'isVisible',
                         'alias',
-                        // 'content:ntext',
-                        // 'createdAt',
-                        // 'updatedAt',
+                        'category.title',
+                        'isVisible:boolean',
                         [
                             'class' => 'yii\grid\ActionColumn',
                             'filterOptions' => ['width' => 60],
