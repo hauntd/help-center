@@ -2,7 +2,7 @@ var categories = {
     treeElement: null,
     init: function() {
         this.treeElement = $('#category-list');
-        if (this.treeElement.length) {
+        if (!this.treeElement.length) {
             return false;
         }
         var el = this.treeElement;
@@ -189,9 +189,10 @@ var categories = {
 $(document).ready(function() {
     var $body = $('body');
 
-    categories.init();
-    categories.display();
-    $body.on('afterSubmit', '.category-form form', function(event) {
-        categories.reload();
-    });
+    if (categories.init()) {
+        categories.display();
+        $body.on('afterSubmit', '.category-form form', function(event) {
+            categories.reload();
+        });
+    }
 });
