@@ -12,6 +12,9 @@ use yii\data\ActiveDataProvider;
  */
 class PostSearch extends Post
 {
+    /** @var string */
+    public $categoryTitle;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +22,7 @@ class PostSearch extends Post
     {
         return [
             [['id', 'categoryId', 'sort', 'isVisible', 'createdAt', 'updatedAt'], 'integer'],
-            [['alias', 'title', 'content'], 'safe'],
+            [['alias', 'title', 'content', 'categoryTitle'], 'safe'],
         ];
     }
 
@@ -40,13 +43,15 @@ class PostSearch extends Post
      */
     public function search($params)
     {
-        $query = Post::find();
-
-        // add conditions that should always apply here
-
+        $query = Post::find()->joinWith(['category']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['categoryTitle'] = [
+            'asc' => ['category.category' => SORT_ASC],
+            'desc' => ['category.category' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -68,7 +73,8 @@ class PostSearch extends Post
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'content', $this->content]);
+            ->andFilterWhere(['like', 'content', $this->content])
+            ->andFilterWhere(['like', 'category.title', $this->categoryTitle]);
 
         return $dataProvider;
     }

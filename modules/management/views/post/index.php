@@ -33,7 +33,11 @@ $this->title = Yii::t('app', 'Posts');
                         ],
                         'title',
                         'alias',
-                        'category.title',
+                        [
+                            'attribute' => 'categoryTitle',
+                            'label' => Yii::t('app', 'Category'),
+                            'value' => 'category.title',
+                        ],
                         'isVisible:boolean',
                         [
                             'class' => 'yii\grid\ActionColumn',

@@ -7,10 +7,12 @@ use yii\helpers\Html;
 $this->title = Html::encode($post->title);
 $this->beginContent('@frontend/views/layouts/sidebar.php');
 ?>
-<div class="post-title">
-    <h1 class="title"><?= Html::encode($post->title) ?></h1>
-</div>
-<div class="post-content">
-    <?= $post->contentCompiled ?>
+<div class="post-view">
+    <div class="post-title">
+        <h1 class="title"><?= Html::encode($post->title) ?></h1>
+    </div>
+    <div class="post-content">
+        <?= $post->contentCompiled ?>
+    </div>
 </div>
 <?php $this->endContent(); ?>
