@@ -69,9 +69,8 @@ class PostSearch extends Post
             'updatedAt' => $this->updatedAt,
         ]);
 
-        $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'content', $this->content])
+        $query->andFilterWhere(['like', 'post.alias', $this->alias])
+            ->andFilterWhere(['like', 'post.title', $this->title])
             ->andFilterWhere(['like', 'category.title', $this->categoryTitle]);
 
         return $dataProvider;
