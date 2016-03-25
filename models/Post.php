@@ -48,7 +48,7 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return array
      */
-    public function behaviours()
+    public function behaviors()
     {
         return [
             'taggable' => [
@@ -67,7 +67,7 @@ class Post extends \yii\db\ActiveRecord
             [['categoryId', 'title', 'content'], 'required'],
             [['categoryId', 'isVisible', 'sort'], 'integer'],
             [['content', 'contentCompiled', 'contentPreview'], 'string'],
-            [['createdAt', 'updatedAt'], 'safe'],
+            [['createdAt', 'updatedAt', 'tagValues'], 'safe'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['alias'], 'unique'],
         ];
@@ -88,6 +88,7 @@ class Post extends \yii\db\ActiveRecord
             'sort' => Yii::t('app', 'Sort'),
             'createdAt' => Yii::t('app', 'Created'),
             'updatedAt' => Yii::t('app', 'Updated'),
+            'tagValues' => Yii::t('app', 'Tags'),
         ];
     }
 
@@ -104,7 +105,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public function getTags()
     {
-        return $this->hasMany(Tag::className(), ['id' => 'tagId'])
+        return $this->hasMany(Tag::class, ['id' => 'tagId'])
             ->viaTable('{{%postTag}}', ['postId' => 'id']);
     }
 }

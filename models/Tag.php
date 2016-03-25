@@ -47,4 +47,12 @@ class Tag extends \yii\db\ActiveRecord
             'frequency' => Yii::t('app', 'Frequency'),
         ];
     }
+
+    /**
+     * @return $this
+     */
+    public function getPostLinks()
+    {
+        return $this->hasMany(PostTag::class, ['tagId' => 'id']);
+    }
 }

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\widgets\CategoriesWidget;
+use app\widgets\TagsWidget;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
@@ -44,12 +45,7 @@ $this->params['navbar.class'] = 'navbar-default navbar-homepage';
             </div>
             <div class="col-xs-12 col-sm-6 homepage-popular-tags">
                 <h4 class="title">Popular tags</h4>
-                <a href="#" class="tag">#general</a>
-                <a href="#" class="tag">#common</a>
-                <a href="#" class="tag">#mail</a>
-                <a href="#" class="tag">#options</a>
-                <a href="#" class="tag">#tech</a>
-                <a href="#" class="tag">#plugins</a>
+                <?= TagsWidget::widget(['count' => 10]) ?>
             </div>
         </div>
     </div>

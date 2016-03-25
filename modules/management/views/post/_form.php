@@ -23,6 +23,7 @@ $buttons = $buttons ?? [];
     <?= $form->field($post, 'alias')->textInput(['maxlength' => true]) ?>
     <?= $form->field($post, 'categoryId')->dropDownList(ArrayHelper::map($categories, 'id', 'title')) ?>
     <?= $form->field($post, 'isVisible')->checkbox() ?>
+    <?= $form->field($post, 'tagValues')->textInput(['class' => 'form-control tags-input']) ?>
     <?= $form->field($post, 'content')->widget(Editor::class, [
         'settings' => [
             'minHeight' => 200,

@@ -78,7 +78,7 @@ class PostController extends WebController
         ]);
     }
 
-    public function actionSearch()
+    public function actionSearch($query = null, $tag = null)
     {
     }
 

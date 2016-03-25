@@ -12,13 +12,15 @@ use app\assets\jqTreeAsset;
  */
 class ManagementAsset extends AssetBundle
 {
-    public $sourcePath = '@app/modules/management/assets/js';
+    public $sourcePath = '@app/modules/management/assets/static';
     public $baseUrl = '@web';
     public $css = [
+        'css/bootstrap-tagsinput.css'
     ];
     public $js = [
-        'management.js',
-        'management-categories.js',
+        'js/bootstrap-tagsinput.min.js',
+        'js/management.js',
+        'js/management-categories.js',
     ];
     public $depends = [
         AppAsset::class,

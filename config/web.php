@@ -27,6 +27,7 @@ $config = [
     'components' => [
         'assetManager' => [
             'appendTimestamp' => true,
+            'forceCopy' => YII_DEBUG,
         ],
         'cache' => [
             'class' => yii\caching\FileCache::class,
