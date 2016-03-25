@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use vova07\imperavi\Widget as Editor;
@@ -25,11 +26,15 @@ $buttons = $buttons ?? [];
     <?= $form->field($post, 'content')->widget(Editor::class, [
         'settings' => [
             'minHeight' => 200,
+            'buttons' => [
+                'format', 'bold', 'italic', 'deleted', 'lists', 'image', 'file', 'link', 'horizontalrule',
+            ],
             'plugins' => [
                 'clips',
-                'fullscreen'
-            ]
-        ]
+                'fullscreen',
+            ],
+            'imageUpload' => Url::to(['/management/post/image-upload'])
+        ],
     ]); ?>
     <div class="form-group">
         <?= Html::submitButton($post->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'),

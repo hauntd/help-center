@@ -10,6 +10,8 @@ use app\modules\management\models\User;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use vova07\imperavi\actions\UploadAction;
+use yii\helpers\Url;
 
 /**
  * @author Alexander Kononenko <contact@hauntd.me>
@@ -19,6 +21,20 @@ class PostController extends ManagementController
 {
     /** @var string */
     public $model = Post::class;
+
+    /**
+     * @return array
+     */
+    public function actions()
+    {
+        return [
+            'image-upload' => [
+                'class' => UploadAction::class,
+                'url' => Url::to('/uploads', true),
+                'path' => '@webroot/uploads'
+            ],
+        ];
+    }
 
     /**
      * @inheritdoc
